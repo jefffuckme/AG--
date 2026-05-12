@@ -1,0 +1,220 @@
+<style>
+  .compare-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 18px;
+  }
+  .choice-card {
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 22px;
+    background: linear-gradient(180deg, #1d2126 0%, #171a1f 100%);
+    padding: 16px;
+    box-shadow: 0 14px 32px rgba(0,0,0,.28);
+  }
+  .choice-card.recommended {
+    box-shadow: 0 0 0 2px rgba(31, 216, 159, .45), 0 16px 40px rgba(0,0,0,.34);
+  }
+  .choice-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .choice-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #f4f8fb;
+  }
+  .choice-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: #08110d;
+    background: #1fd89f;
+    border-radius: 999px;
+    padding: 4px 8px;
+  }
+  .room-shell {
+    border-radius: 18px;
+    background: linear-gradient(180deg, #20242a 0%, #191d22 100%);
+    border: 1px solid rgba(255,255,255,.05);
+    padding: 14px 14px 12px;
+    margin-bottom: 14px;
+  }
+  .row-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+  .owner-pill {
+    min-width: 0;
+    max-width: 58%;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    color: #7ff2c6;
+    background: rgba(8,187,122,.14);
+    border: 1px solid rgba(8,187,122,.24);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .table-id {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(242,246,250,.68);
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  .table-id.muted {
+    letter-spacing: .02em;
+    color: rgba(242,246,250,.56);
+  }
+  .divider {
+    width: 1px;
+    height: 14px;
+    background: rgba(255,255,255,.12);
+    flex: 0 0 auto;
+  }
+  .mini-label {
+    font-size: 10px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.34);
+    margin-right: 4px;
+  }
+  .table-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.07);
+    color: rgba(246,249,252,.82);
+    font-size: 12px;
+    font-weight: 700;
+    flex: 0 0 auto;
+  }
+  .sub-row {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: rgba(255,255,255,.74);
+  }
+  .sub-dot {
+    color: rgba(255,255,255,.26);
+  }
+  .note-list {
+    display: grid;
+    gap: 8px;
+    font-size: 13px;
+    color: #c9d4df;
+  }
+  .note-list strong {
+    color: #f4f8fb;
+  }
+  .summary-box {
+    margin-top: 18px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: rgba(22,27,33,.84);
+    border: 1px solid rgba(255,255,255,.07);
+  }
+  .summary-box p {
+    margin: 0;
+  }
+  @media (max-width: 1100px) {
+    .compare-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<h2>房主名称 + 牌桌号样式方案</h2>
+<p class="subtitle">方向已按“同级，但层次更干净”收敛。重点看 3 件事：一扫能否看懂、长名称是否稳、牌桌号是否还容易找。</p>
+
+<div class="compare-grid">
+  <div class="option choice-card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="choice-head">
+      <div class="choice-title">A. 双胶囊并列</div>
+    </div>
+    <div class="room-shell">
+      <div class="row-top">
+        <div class="owner-pill">Fugg6688</div>
+        <div class="table-chip"><span class="mini-label">桌号</span>#1016</div>
+      </div>
+      <div class="sub-row">
+        <span>100/200</span>
+        <span class="sub-dot">·</span>
+        <span>145:02:20</span>
+        <span class="sub-dot">·</span>
+        <span>长期有效</span>
+      </div>
+    </div>
+    <div class="note-list">
+      <div><strong>优点</strong> 信息块边界最清楚，移动端扫读快。</div>
+      <div><strong>风险</strong> 两个“胶囊”都会抢视觉，容易稍微显得花。</div>
+      <div><strong>适合</strong> 想维持现在绿色房主标签语义，同时让桌号更完整独立。</div>
+    </div>
+  </div>
+
+  <div class="option choice-card recommended" data-choice="b" onclick="toggleSelect(this)">
+    <div class="choice-head">
+      <div class="choice-title">B. 名称主标 + 轻分隔桌号</div>
+      <div class="choice-badge">推荐</div>
+    </div>
+    <div class="room-shell">
+      <div class="row-top">
+        <div class="owner-pill">Fugg6688</div>
+        <div class="divider"></div>
+        <div class="table-id"><span class="mini-label">#</span>1016</div>
+      </div>
+      <div class="sub-row">
+        <span>100/200</span>
+        <span class="sub-dot">·</span>
+        <span>145:02:20</span>
+        <span class="sub-dot">·</span>
+        <span>长期有效</span>
+      </div>
+    </div>
+    <div class="note-list">
+      <div><strong>优点</strong> 最干净，房主和桌号同级但不互抢，和你截图里的暗色卡片最匹配。</div>
+      <div><strong>风险</strong> 桌号存在感比 A 稍弱，需要靠字重和间距控制好。</div>
+      <div><strong>适合</strong> 你现在这个“列表卡片偏克制”的视觉系统。</div>
+    </div>
+  </div>
+
+  <div class="option choice-card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="choice-head">
+      <div class="choice-title">C. 上下两级压缩</div>
+    </div>
+    <div class="room-shell">
+      <div class="row-top">
+        <div class="owner-pill">Fugg6688</div>
+      </div>
+      <div class="sub-row" style="margin-top:8px">
+        <span class="table-id muted">牌桌 #1016</span>
+        <span class="sub-dot">·</span>
+        <span>100/200</span>
+        <span class="sub-dot">·</span>
+        <span>145:02:20</span>
+      </div>
+    </div>
+    <div class="note-list">
+      <div><strong>优点</strong> 纵向节奏最稳，长房主名最安全。</div>
+      <div><strong>风险</strong> 已经不是完全“同级”，更像房主优先、桌号次级。</div>
+      <div><strong>适合</strong> 后面如果你还想把状态信息一起压到同一行。</div>
+    </div>
+  </div>
+</div>
+
+<div class="summary-box">
+  <p><strong>我的建议是选 B。</strong> 它最符合你说的“同级但更干净”：房主名保留胶囊识别，桌号改成轻量文字块，信息层次比现在稳定，也不会像 A 那样显得标签太多。</p>
+</div>

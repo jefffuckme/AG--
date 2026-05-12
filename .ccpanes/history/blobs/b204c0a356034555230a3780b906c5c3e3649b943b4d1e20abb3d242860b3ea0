@@ -1,0 +1,1 @@
+import{L as i}from"./index-z9v5vLBK.js";const t=()=>i.get({url:"/prod-api/app-api/game/mining/statPlatformMining"}),g=()=>i.get({url:"/prod-api/app-api/game/mining/statMyMining"}),p=n=>i.get({url:"/prod-api/app-api/game/mining/selectMiningRecords",params:n});export{t as a,p as b,g};

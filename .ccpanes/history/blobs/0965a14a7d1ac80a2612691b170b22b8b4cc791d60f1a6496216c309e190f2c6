@@ -1,0 +1,21 @@
+{
+  "_comment": {
+    "webURL": "资源访问地址（用于拼接头像等静态资源）",
+    "webURL_main": "官网主域名",
+    "webAppURL": "Telegram 小程序入口地址",
+    "switchAds": "是否启用广告联盟",
+    "openTexas": "是否开启德州玩法相关入口",
+    "legalDisclaimerEnabled": "平台法律免责声明入口与页面显示开关；不配置默认开启",
+    "securityCenterEnabled": "安全中心入口显示开关；不配置默认开启",
+    "tournamentEnabled": "锦标赛入口显示开关；不配置默认开启"
+  },
+  "webURL": "https://m.testgames.org",
+  "webURL_main": "https://app.testgames.org",
+  "webAppURL": "t.me/alanott_bot/allomo",
+  "switchAds": true,
+  "openTexas": true,
+  "legalDisclaimerEnabled": false,
+  "securityCenterEnabled": true,
+  "tournamentEnabled": true,
+  "debugMode": false
+}

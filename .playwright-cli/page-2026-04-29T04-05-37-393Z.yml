@@ -1,0 +1,135 @@
+- main [ref=e2]:
+  - region "AG club lobby strategy preview" [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: alanotestgames
+      - generic [ref=e6]:
+        - generic [ref=e7]: ⋮
+        - generic [ref=e8]: ×
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]:
+          - generic [ref=e13]: AG
+          - generic [ref=e14]:
+            - generic [ref=e15]: T
+            - generic [ref=e16]: 41,839.79
+          - button "18" [ref=e17] [cursor=pointer]
+        - generic [ref=e18]:
+          - generic [ref=e19]:
+            - strong [ref=e23]: 俱樂部
+            - generic [ref=e24]:
+              - generic [ref=e25]:
+                - generic [ref=e26]: "8"
+                - text: 個俱樂部
+              - button "展開或收合俱樂部層" [ref=e27] [cursor=pointer]: ⌃
+          - generic [ref=e28]:
+            - generic [ref=e29]:
+              - button "全部" [ref=e30] [cursor=pointer]:
+                - generic [ref=e32]: 全部
+              - button "我的" [ref=e33] [cursor=pointer]:
+                - generic [ref=e35]: 我的
+              - button "PL 成員 Players" [ref=e36] [cursor=pointer]:
+                - generic [ref=e37]:
+                  - text: PL
+                  - generic [ref=e38]: 成員
+                - generic [ref=e39]: Players
+              - button "FD 代理 fdjhskhfjkdsh" [ref=e40] [cursor=pointer]:
+                - generic [ref=e41]:
+                  - text: FD
+                  - generic [ref=e42]: 代理
+                - generic [ref=e43]: fdjhskhfjkdsh
+              - button "AG 管理員 AlanoGalaxy" [ref=e44] [cursor=pointer]:
+                - generic [ref=e45]:
+                  - text: AG
+                  - generic [ref=e46]: 管理員
+                - generic [ref=e47]: AlanoGalaxy
+            - generic [ref=e48]:
+              - generic [ref=e49]:
+                - generic [ref=e50]: 運營中
+                - generic [ref=e51]:
+                  - generic [ref=e52]: "3"
+                  - generic [ref=e53]: / 上限 5
+              - generic [ref=e56]:
+                - generic [ref=e57]: 在線人數
+                - generic [ref=e58]:
+                  - generic [ref=e59]: "36"
+                  - generic [ref=e60]: 人
+        - generic [ref=e75]:
+          - heading "德州牌桌" [level=2] [ref=e76]
+          - generic [ref=e77]: 1 桌
+        - generic [ref=e78]:
+          - button "全部房間" [ref=e79] [cursor=pointer]
+          - button "有空位" [ref=e80] [cursor=pointer]
+          - button "有人在玩" [ref=e81] [cursor=pointer]
+          - button "我管理" [ref=e82] [cursor=pointer]
+        - 'button "3/9 dndkkkedjd #28666 100/200 在線 5 / 在桌 3 最小買入 T 1K" [ref=e178] [cursor=pointer]':
+          - generic [ref=e117]: 3/9
+          - generic [ref=e118]:
+            - generic [ref=e119]:
+              - generic [ref=e120]: dndkkkedjd
+              - generic [ref=e122]: "#28666"
+            - generic [ref=e124]: 100/200
+            - generic [ref=e126]: 在線 5 / 在桌 3
+          - generic [ref=e127]:
+            - generic [ref=e129]: 最小買入
+            - generic [ref=e130]:
+              - generic [ref=e131]: T
+              - text: 1K
+      - generic:
+        - generic:
+          - generic: "#22497"
+          - button "×"
+        - generic:
+          - generic:
+            - generic: 房主
+            - strong: Fugg6688
+          - generic:
+            - generic: 座位
+            - strong: 0/9
+          - generic:
+            - generic: 盲注
+            - strong: 100 / 200
+          - generic:
+            - generic: 買入
+            - strong: 1K CREDIT
+        - button "確認進入"
+      - generic: 06 Market Board
+      - navigation [ref=e132]:
+        - button "娛樂廳" [ref=e133] [cursor=pointer]:
+          - generic [ref=e135]: 娛樂廳
+        - button "俱樂部" [ref=e136] [cursor=pointer]:
+          - generic [ref=e138]: 俱樂部
+        - button "錦標賽" [ref=e139] [cursor=pointer]:
+          - generic [ref=e141]: 錦標賽
+        - button "個人中心" [ref=e142] [cursor=pointer]:
+          - generic [ref=e144]: 個人中心
+      - generic [ref=e145]: "@alanott_bot"
+  - complementary [ref=e146]:
+    - heading "全頁交互與樣式策略" [level=1] [ref=e147]
+    - paragraph [ref=e148]: 每個版本都保留 AG 系統核心需求：快速切俱樂部、看額度、看待處理、篩房間、點房卡進入、管理房主能力。差異在於採用不同成熟產品模式。
+    - generic [ref=e149]:
+      - button "01 Ops Command 參考交易終端、體育盤口、運營後台。適合房主/管理員高頻掃描。" [ref=e150] [cursor=pointer]:
+        - strong [ref=e151]: 01 Ops Command
+        - generic [ref=e152]: 參考交易終端、體育盤口、運營後台。適合房主/管理員高頻掃描。
+      - button "02 VIP Private Club 參考私人銀行與高端娛樂會所。強化信任、身份、稀缺感。" [ref=e153] [cursor=pointer]:
+        - strong [ref=e154]: 02 VIP Private Club
+        - generic [ref=e155]: 參考私人銀行與高端娛樂會所。強化信任、身份、稀缺感。
+      - button "03 Live Table Floor 參考線下娛樂場桌台平面與遊戲大廳。房間更像可點桌台。" [ref=e156] [cursor=pointer]:
+        - strong [ref=e157]: 03 Live Table Floor
+        - generic [ref=e158]: 參考線下娛樂場桌台平面與遊戲大廳。房間更像可點桌台。
+      - button "04 Social Hub 參考 Discord/Slack 的社群切換。適合多俱樂部、多人關係鏈。" [ref=e159] [cursor=pointer]:
+        - strong [ref=e160]: 04 Social Hub
+        - generic [ref=e161]: 參考 Discord/Slack 的社群切換。適合多俱樂部、多人關係鏈。
+      - button "05 Thumb Native 參考 iOS/Android 底部操作流。優先單手操作和快速進房。" [ref=e162] [cursor=pointer]:
+        - strong [ref=e163]: 05 Thumb Native
+        - generic [ref=e164]: 參考 iOS/Android 底部操作流。優先單手操作和快速進房。
+      - button "06 Market Board 參考金融行情列表。適合大量牌桌、低延遲刷新、密集比較。" [ref=e165] [cursor=pointer]:
+        - strong [ref=e166]: 06 Market Board
+        - generic [ref=e167]: 參考金融行情列表。適合大量牌桌、低延遲刷新、密集比較。
+    - generic [ref=e168]:
+      - button "收合中間層" [ref=e169] [cursor=pointer]
+      - button "只看有人在玩" [active] [ref=e170] [cursor=pointer]
+      - button "打開房間詳情" [ref=e171] [cursor=pointer]
+    - generic [ref=e172]:
+      - generic [ref=e179]: 成熟模式：金融行情板 / 訂單簿列表，大量條目快速比較。
+      - generic [ref=e180]: 中間層策略：中間層縮到篩選和上下文，讓房間列表拿更多首屏。
+      - generic [ref=e181]: 適用場景：42+ 桌高密度房間、大量刷新、快速比較買入/人數。

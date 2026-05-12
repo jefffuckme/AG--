@@ -1,0 +1,126 @@
+/**
+ * ✅ P2-1: 数据处理Worker
+ * 用途: 在Worker线程中处理大量数据计算
+ */
+
+self.onmessage = async function (e) {
+  const { taskId, data } = e.data
+  const { type, payload } = data
+
+  try {
+    let result
+
+    switch (type) {
+      case 'SORT_ROOMS':
+        // 房间列表排序
+        result = sortRooms(payload)
+        break
+
+      case 'FILTER_RECORDS':
+        // 记录过滤
+        result = filterRecords(payload)
+        break
+
+      case 'CALCULATE_STATS':
+        // 统计计算
+        result = calculateStats(payload)
+        break
+
+      case 'PARSE_LARGE_DATA':
+        // 解析大型数据
+        result = parseLargeData(payload)
+        break
+
+      default:
+        throw new Error(`Unknown task type: ${type}`)
+    }
+
+    self.postMessage({ taskId, result })
+  } catch (error) {
+    self.postMessage({ taskId, error: error.message })
+  }
+}
+
+/**
+ * 房间列表排序
+ */
+function sortRooms(data) {
+  const { rooms, sortBy, order } = data
+  const sorted = [...rooms].sort((a, b) => {
+    const aVal = a[sortBy]
+    const bVal = b[sortBy]
+
+    if (typeof aVal === 'number' && typeof bVal === 'number') {
+      return order === 'asc' ? aVal - bVal : bVal - aVal
+    }
+
+    const aStr = String(aVal)
+    const bStr = String(bVal)
+    return order === 'asc' ? aStr.localeCompare(bStr) : bStr.localeCompare(aStr)
+  })
+
+  return sorted
+}
+
+/**
+ * 记录过滤
+ */
+function filterRecords(data) {
+  const { records, filters } = data
+
+  return records.filter((record) => {
+    for (const [key, value] of Object.entries(filters)) {
+      if (value === null || value === undefined) continue
+
+      if (Array.isArray(value)) {
+        if (!value.includes(record[key])) return false
+      } else if (record[key] !== value) {
+        return false
+      }
+    }
+    return true
+  })
+}
+
+/**
+ * 统计计算
+ */
+function calculateStats(data) {
+  const { numbers } = data
+
+  if (numbers.length === 0) {
+    return { sum: 0, avg: 0, min: 0, max: 0, count: 0 }
+  }
+
+  let sum = 0
+  let min = numbers[0]
+  let max = numbers[0]
+
+  for (const num of numbers) {
+    sum += num
+    if (num < min) min = num
+    if (num > max) max = num
+  }
+
+  return {
+    sum,
+    avg: sum / numbers.length,
+    min,
+    max,
+    count: numbers.length
+  }
+}
+
+/**
+ * 解析大型数据
+ */
+function parseLargeData(data) {
+  const { jsonString } = data
+
+  try {
+    const parsed = JSON.parse(jsonString)
+    return parsed
+  } catch (error) {
+    throw new Error(`JSON parse failed: ${error.message}`)
+  }
+}

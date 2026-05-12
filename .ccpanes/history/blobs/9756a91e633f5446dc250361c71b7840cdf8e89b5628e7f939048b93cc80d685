@@ -1,0 +1,245 @@
+/**
+ * ✅ P3-3: OffscreenCanvas 转盘渲染器
+ * 用途: 将转盘动画渲染移至Worker线程
+ *
+ * ✅ 修复: 添加 requestAnimationFrame 降级方案
+ */
+
+// ✅ 兼容性处理: Worker 中的 requestAnimationFrame
+const requestAnimationFrame = (function() {
+  if (typeof self.requestAnimationFrame !== 'undefined') {
+    return self.requestAnimationFrame.bind(self)
+  }
+  // 降级到 setTimeout (60fps)
+  return function(callback) {
+    return setTimeout(callback, 1000 / 60)
+  }
+})()
+
+const cancelAnimationFrame = (function() {
+  if (typeof self.cancelAnimationFrame !== 'undefined') {
+    return self.cancelAnimationFrame.bind(self)
+  }
+  return clearTimeout
+})()
+
+let canvas = null
+let ctx = null
+let width = 0
+let height = 0
+let rotation = 0
+let targetRotation = 0
+let isSpinning = false
+let animationId = null
+
+/**
+ * 初始化
+ *
+ * ✅ 修复: 设置 OffscreenCanvas 尺寸
+ */
+function init(data) {
+  canvas = data.canvas
+  width = data.width
+  height = data.height
+
+  // ✅ 修复: 设置 OffscreenCanvas 的实际尺寸
+  canvas.width = width
+  canvas.height = height
+
+  ctx = canvas.getContext('2d')
+
+  self.postMessage({ type: 'READY' })
+}
+
+/**
+ * 绘制转盘
+ */
+function drawWheel() {
+  // 清空画布
+  ctx.clearRect(0, 0, width, height)
+
+  // 保存状态
+  ctx.save()
+
+  // 移动到中心
+  ctx.translate(width / 2, height / 2)
+
+  // 应用旋转
+  ctx.rotate((rotation * Math.PI) / 180)
+
+  // 绘制转盘背景
+  const radius = Math.min(width, height) / 2 - 20
+
+  // 绘制12个扇形
+  const colors = [
+    '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4',
+    '#FFEAA7', '#DFE6E9', '#FF7675', '#74B9FF',
+    '#A29BFE', '#FD79A8', '#FDCB6E', '#6C5CE7'
+  ]
+
+  for (let i = 0; i < 12; i++) {
+    const startAngle = (i * 30 * Math.PI) / 180
+    const endAngle = ((i + 1) * 30 * Math.PI) / 180
+
+    ctx.beginPath()
+    ctx.moveTo(0, 0)
+    ctx.arc(0, 0, radius, startAngle, endAngle)
+    ctx.closePath()
+    ctx.fillStyle = colors[i]
+    ctx.fill()
+
+    // 绘制边框
+    ctx.strokeStyle = '#FFFFFF'
+    ctx.lineWidth = 2
+    ctx.stroke()
+  }
+
+  // 绘制中心圆
+  ctx.beginPath()
+  ctx.arc(0, 0, 30, 0, Math.PI * 2)
+  ctx.fillStyle = '#FFFFFF'
+  ctx.fill()
+
+  // 恢复状态
+  ctx.restore()
+
+  // 绘制指针
+  ctx.save()
+  ctx.translate(width / 2, 50)
+  ctx.beginPath()
+  ctx.moveTo(0, 0)
+  ctx.lineTo(-15, -30)
+  ctx.lineTo(15, -30)
+  ctx.closePath()
+  ctx.fillStyle = '#FF0000'
+  ctx.fill()
+  ctx.restore()
+}
+
+/**
+ * 渲染循环
+ *
+ * ✅ 修复: 当旋转接近目标时自动停止
+ */
+function render() {
+  // 检查是否接近目标位置
+  const diff = targetRotation - rotation
+  const isNearTarget = Math.abs(diff) < 0.1
+
+  if (isNearTarget && !isSpinning) {
+    // 完成旋转, 精确对齐到目标位置
+    rotation = targetRotation
+    drawWheel()
+    self.postMessage({ type: 'SPIN_COMPLETE', data: { rotation } })
+    animationId = null
+    return
+  }
+
+  // 缓动动画
+  rotation += diff * 0.05
+
+  // 如果非常接近目标且不再主动旋转, 标记为停止状态
+  if (Math.abs(targetRotation - rotation) < 0.5) {
+    isSpinning = false
+  }
+
+  // 绘制
+  drawWheel()
+
+  // 发送帧完成消息
+  self.postMessage({ type: 'FRAME', data: { rotation } })
+
+  // 请求下一帧
+  animationId = requestAnimationFrame(render)
+}
+
+/**
+ * 开始旋转
+ */
+function spin(data) {
+  const { targetDegree, duration } = data
+
+  targetRotation = targetDegree
+  isSpinning = true
+
+  // 开始渲染循环
+  if (!animationId) {
+    render()
+  }
+}
+
+/**
+ * 停止旋转
+ */
+function stop() {
+  isSpinning = false
+  if (animationId) {
+    cancelAnimationFrame(animationId)
+    animationId = null
+  }
+}
+
+/**
+ * 重置
+ */
+function reset() {
+  rotation = 0
+  targetRotation = 0
+  isSpinning = false
+  drawWheel()
+}
+
+/**
+ * 调整大小
+ *
+ * ✅ 修复: 更新 OffscreenCanvas 尺寸
+ */
+function resize(data) {
+  width = data.width
+  height = data.height
+
+  // ✅ 修复: 更新 OffscreenCanvas 的实际尺寸
+  canvas.width = width
+  canvas.height = height
+
+  drawWheel()
+}
+
+/**
+ * 消息处理
+ */
+self.onmessage = function (e) {
+  const { type, data } = e.data
+
+  try {
+    switch (type) {
+      case 'INIT':
+        init(data)
+        break
+
+      case 'SPIN':
+        spin(data)
+        break
+
+      case 'STOP':
+        stop()
+        break
+
+      case 'RESET':
+        reset()
+        break
+
+      case 'RESIZE':
+        resize(data)
+        break
+
+      default:
+        console.warn('[Worker] Unknown message type:', type)
+    }
+  } catch (error) {
+    self.postMessage({
+      type: 'ERROR',
+      data: error.message
+    })
+  }
+}

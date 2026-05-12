@@ -1,0 +1,138 @@
+- main [ref=e2]:
+  - region "AG club lobby prototype" [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: alanotestgames
+      - generic [ref=e6]:
+        - generic [ref=e7]: ⋮
+        - generic [ref=e8]: ×
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]:
+          - generic [ref=e12]:
+            - generic [ref=e13]: ₮
+            - generic [ref=e14]: 41,839.79
+          - button "✉ 18" [ref=e15] [cursor=pointer]
+        - generic [ref=e16]:
+          - generic [ref=e17]:
+            - generic [ref=e18]:
+              - generic [ref=e19]: ♣
+              - generic [ref=e20]: 俱樂部
+            - generic [ref=e21]:
+              - generic [ref=e22]:
+                - generic [ref=e23]: "8"
+                - text: 個俱樂部
+              - button "收合俱樂部層" [ref=e24] [cursor=pointer]: ⌃
+          - generic [ref=e25]:
+            - generic [ref=e26]:
+              - button "全部" [ref=e27] [cursor=pointer]:
+                - generic [ref=e29]: 全部
+              - button "我的" [ref=e30] [cursor=pointer]:
+                - generic [ref=e32]: 我的
+              - button "PL 成員 Players" [ref=e33] [cursor=pointer]:
+                - generic [ref=e34]:
+                  - text: PL
+                  - generic [ref=e35]: 成員
+                - generic [ref=e36]: Players
+              - button "FD 代理 fdjhskhfjkdsh" [ref=e37] [cursor=pointer]:
+                - generic [ref=e38]:
+                  - text: FD
+                  - generic [ref=e39]: 代理
+                - generic [ref=e40]: fdjhskhfjkdsh
+              - button "AG 管理員 AlanoGalaxy" [ref=e41] [cursor=pointer]:
+                - generic [ref=e42]:
+                  - text: AG
+                  - generic [ref=e43]: 管理員
+                - generic [ref=e44]: AlanoGalaxy
+            - generic [ref=e45]:
+              - generic [ref=e46]:
+                - generic [ref=e47]: ♦
+                - generic [ref=e48]:
+                  - generic [ref=e49]: 運營中
+                  - generic [ref=e50]: 3 / 上限 5
+              - generic [ref=e51]:
+                - generic [ref=e52]: ♟
+                - generic [ref=e53]:
+                  - generic [ref=e54]: 人數
+                  - generic [ref=e55]: 9 人
+            - generic [ref=e56]:
+              - button "＋ 創建牌桌" [ref=e57] [cursor=pointer]:
+                - generic [ref=e58]: ＋
+                - generic [ref=e59]: 創建牌桌
+              - button "▤ 遊戲記錄" [ref=e60] [cursor=pointer]:
+                - generic [ref=e61]: ▤
+                - generic [ref=e62]: 遊戲記錄
+              - button "⚙ 管理" [ref=e63] [cursor=pointer]:
+                - generic [ref=e64]: ⚙
+                - generic [ref=e65]: 管理
+              - button "•••" [ref=e66] [cursor=pointer]:
+                - generic [ref=e67]: •••
+        - generic [ref=e68]:
+          - heading "德州牌桌" [level=2] [ref=e69]
+          - generic [ref=e70]: 1 桌
+        - generic [ref=e71]:
+          - button "全部房間" [ref=e72] [cursor=pointer]
+          - button "有空位" [ref=e73] [cursor=pointer]
+          - button "有人在玩" [ref=e74] [cursor=pointer]
+          - button "我管理" [ref=e75] [cursor=pointer]
+        - 'button "3/9 dndkkkedjd #28666 100/200 打開 在線 5 / 在桌 3 德州 最小買入 ₮ 1K" [ref=e111] [cursor=pointer]':
+          - generic [ref=e113]: 3/9
+          - generic [ref=e114]:
+            - generic [ref=e115]:
+              - generic [ref=e116]: dndkkkedjd
+              - generic [ref=e118]: "#28666"
+            - generic [ref=e119]:
+              - generic [ref=e120]: 100/200
+              - generic [ref=e121]: 打開
+            - generic [ref=e122]: 在線 5 / 在桌 3
+          - generic [ref=e123]:
+            - generic [ref=e124]: 德州
+            - generic [ref=e125]: 最小買入
+            - generic [ref=e126]:
+              - generic [ref=e127]: ₮
+              - text: 1K
+      - generic [ref=e155]:
+        - generic [ref=e156]:
+          - generic [ref=e157]: "#28666"
+          - button "×" [ref=e158] [cursor=pointer]
+        - generic [ref=e159]:
+          - generic [ref=e160]:
+            - generic [ref=e161]: 房主
+            - strong [ref=e162]: dndkkkedjd
+          - generic [ref=e163]:
+            - generic [ref=e164]: 買入
+            - strong [ref=e165]: 1K CREDIT
+          - generic [ref=e166]:
+            - generic [ref=e167]: 盲注
+            - strong [ref=e168]: 100 / 200
+          - generic [ref=e169]:
+            - generic [ref=e170]: 狀態
+            - strong [ref=e171]: 可直接入座
+        - button "確認進入" [ref=e172] [cursor=pointer]
+      - generic: Private Club
+      - navigation [ref=e128]:
+        - button "♠ 娛樂廳" [ref=e129] [cursor=pointer]:
+          - generic [ref=e130]: ♠
+          - generic [ref=e131]: 娛樂廳
+        - button "★ 俱樂部" [ref=e132] [cursor=pointer]:
+          - generic [ref=e133]: ★
+          - generic [ref=e134]: 俱樂部
+        - button "🏆 錦標賽" [ref=e135] [cursor=pointer]:
+          - generic [ref=e136]: 🏆
+          - generic [ref=e137]: 錦標賽
+        - button "● 個人中心" [ref=e138] [cursor=pointer]:
+          - generic [ref=e139]: ●
+          - generic [ref=e140]: 個人中心
+      - generic [ref=e141]: "@alanott_bot"
+  - complementary [ref=e142]:
+    - heading "俱樂部中層原型" [level=1] [ref=e143]
+    - paragraph [ref=e144]: 可點擊切換設計方向、收合中間層、切換俱樂部與房間篩選。房卡本身就是入口。
+    - generic [ref=e145]:
+      - generic [ref=e146]: Design direction
+      - button "Ops Command：密度高、掃描快" [ref=e147] [cursor=pointer]
+      - button "Private Club：高級私域感" [ref=e148] [cursor=pointer]
+      - button "Focus Minimal：降低干擾" [ref=e149] [cursor=pointer]
+    - generic [ref=e150]:
+      - generic [ref=e151]: Interaction
+      - button "收合 / 展開中間層" [ref=e152] [cursor=pointer]
+      - button "切到有人在玩" [ref=e153] [cursor=pointer]
+      - button "打開房間詳情" [active] [ref=e154] [cursor=pointer]

@@ -1,0 +1,70 @@
+<h2>私人房间上分/下分未绑定 Google 时的拦截方案</h2>
+<p class="subtitle">我建议选 B：提交前先拦截，弹出专用提示弹窗，再直达 Google 绑定页</p>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mockup">
+        <div class="mockup-header">A. 复用现有验证码弹窗</div>
+        <div class="mockup-body" style="padding:16px; background:#17191d; min-height:220px;">
+          <div style="color:#fff; font-weight:600; margin-bottom:12px;">安全验证</div>
+          <div style="color:rgba(255,255,255,.6); font-size:13px; margin-bottom:10px;">支付密码</div>
+          <div style="height:42px; border-radius:10px; background:#1c1e22; border:1px solid rgba(255,255,255,.08); margin-bottom:14px;"></div>
+          <div style="color:rgba(255,255,255,.6); font-size:13px; margin-bottom:10px;">Google 验证码</div>
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border-radius:10px; background:rgba(255,107,107,.08); border:1px solid rgba(255,107,107,.24); color:#ff8b8b; font-size:13px;">
+            <span>尚未绑定，去绑定</span>
+            <span>›</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A. 复用现有弹窗</h3>
+      <p>改动最小，但用户先进入验证码弹窗，再发现自己不能操作，体验偏绕。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mockup">
+        <div class="mockup-header">B. 提交前专用拦截弹窗</div>
+        <div class="mockup-body" style="padding:16px; background:#17191d; min-height:220px; display:flex; align-items:center;">
+          <div style="width:100%; border-radius:18px; background:#25262d; padding:20px 16px;">
+            <div style="color:#fff; font-weight:600; font-size:17px; text-align:center; margin-bottom:10px;">绑定 Google 验证后可操作</div>
+            <div style="color:rgba(255,255,255,.6); font-size:13px; line-height:1.5; text-align:center; margin-bottom:18px;">私人房间上分/下分需要 Google 验证。你当前尚未绑定，请先完成绑定后再继续。</div>
+            <div style="display:flex; gap:10px;">
+              <div style="flex:1; height:40px; border-radius:12px; background:#343741; color:#d8dbe2; display:flex; align-items:center; justify-content:center;">取消</div>
+              <div style="flex:1; height:40px; border-radius:12px; background:linear-gradient(135deg,#08bb7a,#0ad18b); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:600;">去绑定</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B. 专用拦截弹窗</h3>
+      <p>流程最清晰。用户点击提交后立刻知道为什么不能继续，并能一键跳到 Google 绑定页。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mockup">
+        <div class="mockup-header">C. 前后端一起强制未绑定不可提交</div>
+        <div class="mockup-body" style="padding:16px; background:#17191d; min-height:220px;">
+          <div style="border-radius:14px; background:#25262d; padding:18px; margin-bottom:12px;">
+            <div style="color:#fff; font-weight:600; margin-bottom:8px;">前端</div>
+            <div style="color:rgba(255,255,255,.65); font-size:13px;">弹专用提示弹窗，直达绑定页</div>
+          </div>
+          <div style="border-radius:14px; background:#25262d; padding:18px;">
+            <div style="color:#fff; font-weight:600; margin-bottom:8px;">后端</div>
+            <div style="color:rgba(255,255,255,.65); font-size:13px;">未绑定 Google 时也直接拒绝 API</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C. 体验 + 安全双改</h3>
+      <p>最完整，但范围更大。除了前端弹窗，还要补后端“未绑定不可操作”的强校验。</p>
+    </div>
+  </div>
+</div>

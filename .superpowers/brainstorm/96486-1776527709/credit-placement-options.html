@@ -1,0 +1,96 @@
+<h2>牌桌卡片里的 CREDIT 放置方案</h2>
+<p class="subtitle">目标：在“全部”列表中，每张牌桌都能直接看到“我在该俱乐部的额度”，同时不打乱现有卡片层级。</p>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#1e2127;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:14px;color:#fff;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:48px;height:48px;border-radius:50%;border:3px solid #3d4350;display:flex;align-items:center;justify-content:center;color:#d6d8df;font-weight:700;">0/9</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-weight:700;font-size:18px;">#THtu*07MGM_1</div>
+            <div style="font-size:12px;color:#18c98b;margin-top:3px;">德州 Club</div>
+            <div style="font-size:12px;color:#9ba1ad;margin-top:6px;">在线 0 / 在桌 0</div>
+          </div>
+          <div style="width:110px;text-align:right;">
+            <div style="font-size:11px;color:#9ba1ad;">最低买入</div>
+            <div style="font-size:28px;color:#12d889;font-weight:800;line-height:1.05;">1K</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;background:rgba(10,201,136,.10);border:1px solid rgba(18,216,137,.35);color:#9cf2cf;border-radius:999px;padding:7px 12px;font-size:12px;display:inline-flex;align-items:center;gap:8px;">
+          <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#12d889;"></span>
+          My Credit 12.5K
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A. 放在卡片底部横条</h3>
+      <p>信息最完整，也最容易看懂，但会明显增加卡片高度。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#1e2127;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:14px;color:#fff;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:48px;height:48px;border-radius:50%;border:3px solid #3d4350;display:flex;align-items:center;justify-content:center;color:#d6d8df;font-weight:700;">0/9</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-weight:700;font-size:18px;">#THtu*07MGM_1</div>
+            <div style="font-size:12px;color:#18c98b;margin-top:3px;">德州 Club</div>
+            <div style="font-size:12px;color:#9ba1ad;margin-top:6px;">在线 0 / 在桌 0</div>
+          </div>
+          <div style="width:118px;text-align:right;">
+            <div style="font-size:11px;color:#9ba1ad;">最低买入</div>
+            <div style="font-size:28px;color:#12d889;font-weight:800;line-height:1.05;">1K</div>
+            <div style="margin-top:6px;font-size:12px;color:#9cf2cf;">额度 12.5K</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B. 放在右侧买入区下方</h3>
+      <p>额度和最低买入放在一起，最符合“我够不够进这桌”的决策路径，改动也最小。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#1e2127;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:14px;color:#fff;position:relative;">
+        <div style="position:absolute;right:14px;top:12px;background:rgba(10,201,136,.10);border:1px solid rgba(18,216,137,.35);color:#9cf2cf;border-radius:999px;padding:5px 10px;font-size:11px;">额度 12.5K</div>
+        <div style="display:flex;align-items:center;gap:12px;padding-top:18px;">
+          <div style="width:48px;height:48px;border-radius:50%;border:3px solid #3d4350;display:flex;align-items:center;justify-content:center;color:#d6d8df;font-weight:700;">0/9</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-weight:700;font-size:18px;">#THtu*07MGM_1</div>
+            <div style="font-size:12px;color:#18c98b;margin-top:3px;">德州 Club</div>
+            <div style="font-size:12px;color:#9ba1ad;margin-top:6px;">在线 0 / 在桌 0</div>
+          </div>
+          <div style="width:110px;text-align:right;">
+            <div style="font-size:11px;color:#9ba1ad;">最低买入</div>
+            <div style="font-size:28px;color:#12d889;font-weight:800;line-height:1.05;">1K</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C. 放在右上角悬浮标签</h3>
+      <p>最省空间，但会和地区标签、状态标签一类信息争抢角落资源，易显得杂。</p>
+    </div>
+  </div>
+</div>
+
+<div class="pros-cons" style="margin-top:18px;">
+  <div class="pros">
+    <h4>推荐</h4>
+    <ul>
+      <li>优先选 B。它最贴近买入决策，不需要用户来回扫顶部俱乐部条和当前牌桌。</li>
+      <li>在“全部”列表里，每张桌子的额度本来就对应不同俱乐部，放在右侧能自然形成“额度 vs 最低买入”的一组对照。</li>
+    </ul>
+  </div>
+  <div class="cons">
+    <h4>注意</h4>
+    <ul>
+      <li>如果后端/前端入桌校验仍然使用全局 CREDIT，而卡片显示俱乐部 CREDIT，会造成展示和实际拦截不一致。</li>
+      <li>额度文案建议用短标签，例如“额度”或“My Credit”，避免把右列撑宽。</li>
+    </ul>
+  </div>
+</div>

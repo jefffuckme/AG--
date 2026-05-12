@@ -1,0 +1,1 @@
+const i=t=>Array.isArray(t)?String(t[0]||"").trim().toLowerCase():String(t||"").trim().toLowerCase(),a=(t,e="wait")=>{const r=i(t);return r==="detail"||r==="wait"?r:e},o=({roomId:t,rt:e,mttId:r,returnTarget:n})=>({roomId:t,rt:String(e||"mtt"),mttId:String(r||""),mttReturn:n||"wait"});export{o as b,a as r};

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MTT Telegram Copy Comparison</title>
+    <style>
+      :root {
+        --navy: #07192d;
+        --blue: #123961;
+        --panel: rgba(255, 255, 255, 0.075);
+        --panel-border: rgba(255, 255, 255, 0.13);
+        --cream: #f9f1d9;
+        --ink: #10202d;
+        --muted: #718094;
+        --button: #3398ff;
+        --green: #25b86f;
+        --amber: #efaa2f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "SF Pro Display", "Segoe UI", Arial, sans-serif;
+        color: #f1f7ff;
+        background:
+          radial-gradient(circle at 20% 0%, rgba(48, 153, 255, 0.22), transparent 30%),
+          radial-gradient(circle at 92% 18%, rgba(255, 203, 100, 0.18), transparent 22%),
+          linear-gradient(180deg, var(--navy), var(--blue));
+      }
+
+      .page {
+        width: 1600px;
+        margin: 0 auto;
+        padding: 48px 54px 60px;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 28px;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 42px;
+        letter-spacing: -0.035em;
+      }
+
+      .subtitle {
+        margin: 0;
+        color: rgba(241, 247, 255, 0.75);
+        font-size: 17px;
+      }
+
+      .legend {
+        display: flex;
+        gap: 10px;
+      }
+
+      .pill {
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--panel-border);
+        background: var(--panel);
+        color: rgba(241, 247, 255, 0.82);
+        font-size: 13px;
+      }
+
+      .compare {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+
+      .column {
+        padding: 22px;
+        border: 1px solid var(--panel-border);
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.065);
+        box-shadow: 0 24px 56px rgba(0, 0, 0, 0.2);
+      }
+
+      .column-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .column-title {
+        margin: 0;
+        font-size: 24px;
+      }
+
+      .column-tag {
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #07192d;
+        background: #f4c76d;
+      }
+
+      .column-tag.green {
+        background: #69e6a5;
+      }
+
+      .list {
+        display: grid;
+        gap: 14px;
+      }
+
+      .message {
+        display: grid;
+        grid-template-columns: 42px 1fr;
+        gap: 12px;
+      }
+
+      .avatar {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        font-weight: 800;
+        color: white;
+        background: linear-gradient(180deg, #ffc864, #ff9c30);
+        box-shadow: 0 10px 18px rgba(255, 156, 54, 0.25);
+      }
+
+      .bubble {
+        padding: 14px 15px 12px;
+        border-radius: 18px 18px 18px 6px;
+        background: var(--cream);
+        color: var(--ink);
+        border: 1px solid rgba(23, 38, 53, 0.12);
+      }
+
+      .type {
+        margin: 0 0 8px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .text {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.48;
+        white-space: pre-line;
+      }
+
+      strong {
+        font-weight: 800;
+      }
+
+      .button {
+        display: inline-flex;
+        margin-top: 10px;
+        padding: 9px 14px;
+        min-width: 150px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        color: white;
+        background: linear-gradient(180deg, #5eb6ff, var(--button));
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .button.none {
+        min-width: 0;
+        color: var(--muted);
+        background: transparent;
+        padding: 0;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .note {
+        margin-top: 22px;
+        padding: 16px 18px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.07);
+        color: rgba(241, 247, 255, 0.76);
+        font-size: 14px;
+        line-height: 1.55;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header>
+        <div>
+          <h1>MTT Telegram Copy Comparison</h1>
+          <p class="subtitle">Two text directions for the same 6 player-side push messages.</p>
+        </div>
+        <div class="legend">
+          <span class="pill">Short = lower noise</span>
+          <span class="pill">Operational = clearer next step</span>
+        </div>
+      </header>
+
+      <section class="compare">
+        <article class="column">
+          <div class="column-head">
+            <h2 class="column-title">Short System Copy</h2>
+            <span class="column-tag green">Recommended</span>
+          </div>
+          <div class="list">
+            <div class="message">
+              <div class="avatar">A</div>
+              <div class="bubble">
+                <p class="type">Registration Approved</p>
+                <p class="text">✅ You are registered for <strong>Sunday Main Event</strong>.</p>
+                <div class="button">🎯 View Tournament</div>
+              </div>
+            </div>
+            <div class="message">
+              <div class="avatar">A</div>
+              <div class="bubble">
+                <p class="type">Registration Rejected</p>
+                <p class="text">❌ Your registration for <strong>Sunday Main Event</strong> was not approved.</p>
+                <div class="button">📋 View Details</div>
+              </div>
+            </div>
+            <div class="message">
+              <div class="avatar">A</div>
+              <div class="bubble">
+                <p class="type">Starting Soon</p>
+                <p class="text">⏰ <strong>Sunday Main Event</strong> starts in <strong>10 minutes</strong>.</p>
+                <div class="button">🏁 Get Ready</div>
+              </div>
+            </div>
+            <div class="message">
+              <div class="avatar">A</div>
+              <div class="bubble">
+                <p class="type">Cancelled</p>
+                <p class="text">⚠️ <strong>Sunday Main Event</strong> has been cancelled.</p>
+                <div class="button none">Pure text only</div>
+              </div>
+            </div>
+            <div class="message">
+              <div class="avatar">A</div>
+              <div class="bubble">
+                <p class="type">Finished</p>
+                <p class="text">🏁 <strong>Sunday Main Event</strong> has finished.</p>
+                <div class="button">📊 View Result</div>
+              </div>
+            </div>
+            <div class="message">
+              <div class="avatar">A</div>
+              <div class="bubble">
+                <p class="type">Prize Claimable</p>
+                <p class="text">🏆 Your prize is ready to claim.
+Prize: <strong>520 USDT</strong></p>
+                <div class="button">💰 Claim Prize</div>
+              </div>
+            </div>
+          </div>
+          <div class="note">
+            Best for V1: concise, predictable, and low interruption. It relies on the button or Mini App page to provide deeper context.
+          </div>
+        </article>
+
+        <article class="column">
+          <div class="column-head">
+            <h2 class="column-title">Operational Copy</h2>
+            <span class="column-tag">More context</span>
+          </div>
+          <div class="list">
+            <div class="message">
+              <div class="avatar">A</div>
+              <div class="bubble">
+                <p class="type">Registration Approved</p>
+                <p class="text">✅ Your registration for <strong>Sunday Main Event</strong> has been approved.
+
+Start Time: <strong>Apr 25, 20:00</strong>
+Buy-in: <strong>100 USDT</strong></p>
+                <div class="button">🎯 View Tournament</div>
+              </div>
+            </div>
+            <div class="message">
+              <div class="avatar">A</div>
+              <div class="bubble">
+                <p class="type">Registration Rejected</p>
+                <p class="text">❌ Your registration for <strong>Sunday Main Event</strong> was not approved.
+
+Please check tournament details for more information.</p>
+                <div class="button">📋 View Details</div>
+              </div>
+            </div>
+            <div class="message">
+              <div class="avatar">A</div>
+              <div class="bubble">
+                <p class="type">Starting Soon</p>
+                <p class="text">⏰ <strong>Sunday Main Event</strong> will start in <strong>10 minutes</strong>.
+
+Please get ready and enter on time.</p>
+                <div class="button">🏁 Get Ready</div>
+              </div>
+            </div>
+            <div class="message">
+              <div class="avatar">A</div>
+              <div class="bubble">
+                <p class="type">Cancelled</p>
+                <p class="text">⚠️ <strong>Sunday Main Event</strong> has been cancelled.
+
+Any paid fee will be returned according to tournament rules.</p>
+                <div class="button none">Pure text only</div>
+              </div>
+            </div>
+            <div class="message">
+              <div class="avatar">A</div>
+              <div class="bubble">
+                <p class="type">Finished</p>
+                <p class="text">🏁 <strong>Sunday Main Event</strong> has finished.
+
+Final rankings and rewards will be updated shortly.</p>
+                <div class="button">📊 View Result</div>
+              </div>
+            </div>
+            <div class="message">
+              <div class="avatar">A</div>
+              <div class="bubble">
+                <p class="type">Prize Claimable</p>
+                <p class="text">🏆 Your prize for <strong>Sunday Main Event</strong> is ready to claim.
+
+Prize: <strong>520 USDT</strong></p>
+                <div class="button">💰 Claim Prize</div>
+              </div>
+            </div>
+          </div>
+          <div class="note">
+            Better when users need context inside Telegram itself. Slightly more verbose, but clearer for money and schedule-related messages.
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

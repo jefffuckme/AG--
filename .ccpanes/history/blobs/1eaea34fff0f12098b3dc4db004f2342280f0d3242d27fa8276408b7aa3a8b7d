@@ -1,0 +1,1 @@
+const e="/assets/table-BH6KchRb.png",s=t=>String(t||"").trim()||e;export{s as r};

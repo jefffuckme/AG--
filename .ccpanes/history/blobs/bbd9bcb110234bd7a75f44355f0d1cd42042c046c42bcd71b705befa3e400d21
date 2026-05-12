@@ -1,0 +1,230 @@
+/**
+ * ✅ P3-3: OffscreenCanvas Worker - 粒子动画示例
+ * 用途: 在Worker线程中渲染粒子动画
+ *
+ * ✅ 修复: 添加 requestAnimationFrame 降级方案
+ */
+
+// ✅ 兼容性处理: Worker 中的 requestAnimationFrame
+const requestAnimationFrame = (function() {
+  if (typeof self.requestAnimationFrame !== 'undefined') {
+    return self.requestAnimationFrame.bind(self)
+  }
+  // 降级到 setTimeout (60fps)
+  return function(callback) {
+    return setTimeout(callback, 1000 / 60)
+  }
+})()
+
+const cancelAnimationFrame = (function() {
+  if (typeof self.cancelAnimationFrame !== 'undefined') {
+    return self.cancelAnimationFrame.bind(self)
+  }
+  return clearTimeout
+})()
+
+let canvas = null
+let ctx = null
+let width = 0
+let height = 0
+let particles = []
+let animationId = null
+let isRunning = false
+
+/**
+ * 粒子类
+ */
+class Particle {
+  constructor(x, y) {
+    this.x = x
+    this.y = y
+    this.vx = (Math.random() - 0.5) * 2
+    this.vy = (Math.random() - 0.5) * 2
+    this.radius = Math.random() * 3 + 1
+    this.color = `hsl(${Math.random() * 360}, 70%, 60%)`
+  }
+
+  update() {
+    this.x += this.vx
+    this.y += this.vy
+
+    // 边界反弹
+    if (this.x < 0 || this.x > width) this.vx *= -1
+    if (this.y < 0 || this.y > height) this.vy *= -1
+
+    // 限制位置
+    this.x = Math.max(0, Math.min(width, this.x))
+    this.y = Math.max(0, Math.min(height, this.y))
+  }
+
+  draw() {
+    ctx.beginPath()
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
+    ctx.fillStyle = this.color
+    ctx.fill()
+  }
+}
+
+/**
+ * 初始化
+ *
+ * ✅ 修复: 设置 OffscreenCanvas 尺寸
+ */
+function init(data) {
+  canvas = data.canvas
+  width = data.width
+  height = data.height
+
+  // ✅ 修复: 设置 OffscreenCanvas 的实际尺寸
+  canvas.width = width
+  canvas.height = height
+
+  ctx = canvas.getContext('2d')
+
+  // 创建粒子
+  const particleCount = data.particleCount || 50
+  particles = []
+  for (let i = 0; i < particleCount; i++) {
+    particles.push(
+      new Particle(Math.random() * width, Math.random() * height)
+    )
+  }
+
+  self.postMessage({ type: 'READY' })
+}
+
+/**
+ * 渲染循环
+ */
+function render() {
+  if (!isRunning) return
+
+  // 清空画布
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'
+  ctx.fillRect(0, 0, width, height)
+
+  // 更新和绘制粒子
+  for (const particle of particles) {
+    particle.update()
+    particle.draw()
+  }
+
+  // 绘制连线
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)'
+  ctx.lineWidth = 1
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x
+      const dy = particles[i].y - particles[j].y
+      const distance = Math.sqrt(dx * dx + dy * dy)
+
+      if (distance < 100) {
+        ctx.beginPath()
+        ctx.moveTo(particles[i].x, particles[i].y)
+        ctx.lineTo(particles[j].x, particles[j].y)
+        ctx.stroke()
+      }
+    }
+  }
+
+  // 发送帧完成消息
+  self.postMessage({ type: 'FRAME' })
+
+  // 请求下一帧
+  animationId = requestAnimationFrame(render)
+}
+
+/**
+ * 更新配置
+ */
+function update(data) {
+  if (data.particleCount !== undefined) {
+    const currentCount = particles.length
+    const targetCount = data.particleCount
+
+    if (targetCount > currentCount) {
+      // 添加粒子
+      for (let i = 0; i < targetCount - currentCount; i++) {
+        particles.push(
+          new Particle(Math.random() * width, Math.random() * height)
+        )
+      }
+    } else if (targetCount < currentCount) {
+      // 移除粒子
+      particles = particles.slice(0, targetCount)
+    }
+  }
+}
+
+/**
+ * 调整大小
+ *
+ * ✅ 修复: 更新 OffscreenCanvas 尺寸
+ */
+function resize(data) {
+  width = data.width
+  height = data.height
+
+  // ✅ 修复: 更新 OffscreenCanvas 的实际尺寸
+  canvas.width = width
+  canvas.height = height
+}
+
+/**
+ * 开始渲染
+ */
+function start() {
+  if (isRunning) return
+  isRunning = true
+  render()
+}
+
+/**
+ * 停止渲染
+ */
+function stop() {
+  isRunning = false
+  if (animationId) {
+    cancelAnimationFrame(animationId)
+    animationId = null
+  }
+}
+
+/**
+ * 消息处理
+ */
+self.onmessage = function (e) {
+  const { type, data } = e.data
+
+  try {
+    switch (type) {
+      case 'INIT':
+        init(data)
+        break
+
+      case 'UPDATE':
+        update(data)
+        break
+
+      case 'RENDER':
+        start()
+        break
+
+      case 'STOP':
+        stop()
+        break
+
+      case 'RESIZE':
+        resize(data)
+        break
+
+      default:
+        console.warn('[Worker] Unknown message type:', type)
+    }
+  } catch (error) {
+    self.postMessage({
+      type: 'ERROR',
+      data: error.message
+    })
+  }
+}

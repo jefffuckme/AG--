@@ -1,0 +1,154 @@
+<h2>部署面板优化方向</h2>
+<p class="subtitle">先定方向，再落细节。下面 3 个方案都基于你现在这版面板，只调整交互层级和视觉重点。</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>运维效率优先</h3>
+      <p>更像值班面板。状态、最后部署、运行中、失败项更突出，适合高频盯盘。</p>
+    </div>
+  </div>
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>清爽平衡版</h3>
+      <p>保留信息完整度，但减少噪声。适合日常使用，观感更稳。</p>
+    </div>
+  </div>
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>指挥台增强版</h3>
+      <p>强调环境切换、批量动作、分组折叠和异常聚焦，适合多系统联动部署。</p>
+    </div>
+  </div>
+</div>
+
+<div class="cards" style="margin-top:24px">
+  <div class="card" data-choice="a-card" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mockup">
+        <div class="mockup-header">A. 运维效率优先</div>
+        <div class="mockup-body">
+          <div style="background:#fff;border-radius:22px;padding:18px;box-shadow:0 2px 12px rgba(0,0,0,.08)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+              <div style="font-weight:700">Wallet 用户端</div>
+              <div style="display:flex;gap:8px;align-items:center">
+                <span style="width:10px;height:10px;border-radius:50%;background:#FF3B30;display:inline-block"></span>
+                <span style="padding:5px 10px;border-radius:999px;background:rgba(255,59,48,.1);color:#B42318;font-size:11px;font-weight:700">最后失败 6 分钟前</span>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+              <div style="padding:10px 12px;border-radius:14px;background:#fff7ed;border:1px solid rgba(255,159,10,.25)">
+                <div style="font-size:10px;color:#B86500;text-transform:uppercase">进行中</div>
+                <div style="font-size:18px;font-weight:800;color:#1d1d1f">1m 42s</div>
+              </div>
+              <div style="padding:10px 12px;border-radius:14px;background:#f5f5f7">
+                <div style="font-size:10px;color:#6e6e73;text-transform:uppercase">最近成功</div>
+                <div style="font-size:18px;font-weight:800;color:#1d1d1f">2h 前</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="mock-button" style="background:#30D158;color:#fff">部署</button>
+              <button class="mock-button">刷新</button>
+              <button class="mock-button">日志</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>更快发现异常</h3>
+      <p>适合最常见任务是“看哪里挂了、哪个刚发过、哪个正在跑”。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b-card" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mockup">
+        <div class="mockup-header">B. 清爽平衡版</div>
+        <div class="mockup-body">
+          <div style="background:#fff;border-radius:22px;padding:18px;box-shadow:0 2px 12px rgba(0,0,0,.08)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+              <div style="font-weight:700">Wallet 用户端</div>
+              <div style="display:flex;gap:8px;align-items:center">
+                <span style="width:10px;height:10px;border-radius:50%;background:#34C759;display:inline-block"></span>
+                <span style="padding:5px 10px;border-radius:999px;background:rgba(10,132,255,.1);color:#0A84FF;font-size:11px;font-weight:700">最后部署 12 分钟前</span>
+              </div>
+            </div>
+            <div style="font-size:12px;color:#8e8e93;margin-bottom:12px">默认只展示 1 条最新记录，展开后再看历史。</div>
+            <div style="padding:10px 12px;border-radius:14px;background:#f7f7f9;display:flex;justify-content:space-between;margin-bottom:10px">
+              <span style="font-size:12px;color:#1d1d1f">success · by mingge</span>
+              <span style="font-size:12px;color:#6e6e73">今天 14:26</span>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="mock-button" style="background:#30D158;color:#fff">部署</button>
+              <button class="mock-button">更多记录</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>日常最好用</h3>
+      <p>不牺牲可读性，也不做太重的运维味道，适合长期常驻。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c-card" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mockup">
+        <div class="mockup-header">C. 指挥台增强版</div>
+        <div class="mockup-body">
+          <div style="background:#fff;border-radius:22px;padding:18px;box-shadow:0 2px 12px rgba(0,0,0,.08)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+              <div>
+                <div style="font-weight:700">企业钱包前端</div>
+                <div style="font-size:11px;color:#8e8e93;margin-top:4px">2 个服务 · 1 个运行中 · 1 个待处理</div>
+              </div>
+              <span style="padding:5px 10px;border-radius:999px;background:rgba(255,159,10,.13);color:#B86500;font-size:11px;font-weight:700">Test 环境</span>
+            </div>
+            <div style="display:grid;gap:8px;margin-bottom:12px">
+              <div style="padding:10px 12px;border-radius:14px;background:#f7f7f9;display:flex;justify-content:space-between">
+                <span>Wallet 用户端</span>
+                <span style="color:#FF9F0A;font-weight:700">进行中</span>
+              </div>
+              <div style="padding:10px 12px;border-radius:14px;background:#f7f7f9;display:flex;justify-content:space-between">
+                <span>Wallet 管理后台</span>
+                <span style="color:#34C759;font-weight:700">12 分钟前</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="mock-button" style="background:#1d1d1f;color:#fff">本组全量部署</button>
+              <button class="mock-button">展开分组</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>适合继续做大</h3>
+      <p>如果后面还要接更多服务、批量部署、分组日志，这个方向扩展性最好。</p>
+    </div>
+  </div>
+</div>
+
+<div class="pros-cons" style="margin-top:24px">
+  <div class="pros">
+    <h4>我当前推荐</h4>
+    <ul>
+      <li>如果你想先小步快跑，选 B</li>
+      <li>如果你最关心异常发现速度，选 A</li>
+      <li>如果你准备把它做成真正的部署指挥台，选 C</li>
+    </ul>
+  </div>
+  <div class="cons">
+    <h4>取舍</h4>
+    <ul>
+      <li>A：更强，但容易偏“监控面板”</li>
+      <li>B：最稳，但创新感最弱</li>
+      <li>C：潜力大，但改动范围最大</li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,1 @@
+const t="/assets/default_logo-DunVl_Q9.png",r=t,s=o=>o||t,n=o=>{const e=o.currentTarget;e instanceof HTMLImageElement&&e.src!==t&&(e.src=t)};export{r as d,n as h,s as r};

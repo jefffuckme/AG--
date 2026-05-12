@@ -1,0 +1,102 @@
+<h2>最后部署时间强化</h2>
+<p class="subtitle">你刚选的是“放到卡片头部”。下面是两种具体做法，我推荐 A。</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>头部时间胶囊</h3>
+      <p>把“最后部署”做成状态旁边的浅底标签，时间更醒目，但不抢按钮和标题。</p>
+    </div>
+  </div>
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>头部大号次级标题</h3>
+      <p>在标题下单独占一行，视觉更强，但卡片高度会更高，密度略差。</p>
+    </div>
+  </div>
+</div>
+
+<div class="split" style="margin-top:24px">
+  <div class="mockup">
+    <div class="mockup-header">A. 头部时间胶囊</div>
+    <div class="mockup-body">
+      <div style="background:#fff;border-radius:24px;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,.08)">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px">
+          <div style="display:flex;align-items:center;gap:10px;font-weight:700;color:#1d1d1f">
+            <span style="width:20px;height:20px;border-radius:6px;background:#dff7e7;display:inline-block"></span>
+            <span>Wallet 用户端</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="width:10px;height:10px;border-radius:50%;background:#34C759;display:inline-block"></span>
+            <span style="font-size:12px;font-weight:700;color:#185c37;background:rgba(52,199,89,.12);padding:6px 10px;border-radius:999px">最后部署 12 分钟前</span>
+            <span style="font-size:11px;color:#6e6e73">Actions</span>
+          </div>
+        </div>
+        <div style="display:grid;gap:8px">
+          <div style="padding:10px 12px;border-radius:14px;background:#f7f7f9;display:flex;justify-content:space-between">
+            <span style="font-size:12px;color:#1d1d1f">success</span>
+            <span style="font-size:12px;color:#6e6e73">12 分钟前</span>
+          </div>
+          <div style="padding:10px 12px;border-radius:14px;background:#f7f7f9;display:flex;justify-content:space-between">
+            <span style="font-size:12px;color:#1d1d1f">success</span>
+            <span style="font-size:12px;color:#6e6e73">2 小时前</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">B. 头部大号次级标题</div>
+    <div class="mockup-body">
+      <div style="background:#fff;border-radius:24px;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,.08)">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <div style="display:flex;align-items:center;gap:10px;font-weight:700;color:#1d1d1f">
+            <span style="width:20px;height:20px;border-radius:6px;background:#dff7e7;display:inline-block"></span>
+            <span>Wallet 用户端</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="width:10px;height:10px;border-radius:50%;background:#34C759;display:inline-block"></span>
+            <span style="font-size:11px;color:#6e6e73">Actions</span>
+          </div>
+        </div>
+        <div style="margin:10px 0 14px 30px">
+          <div style="font-size:11px;color:#8e8e93;text-transform:uppercase;letter-spacing:.05em">最后部署</div>
+          <div style="font-size:18px;font-weight:800;color:#1d1d1f">12 分钟前</div>
+          <div style="font-size:11px;color:#8e8e93">今天 14:26</div>
+        </div>
+        <div style="display:grid;gap:8px">
+          <div style="padding:10px 12px;border-radius:14px;background:#f7f7f9;display:flex;justify-content:space-between">
+            <span style="font-size:12px;color:#1d1d1f">success</span>
+            <span style="font-size:12px;color:#6e6e73">12 分钟前</span>
+          </div>
+          <div style="padding:10px 12px;border-radius:14px;background:#f7f7f9;display:flex;justify-content:space-between">
+            <span style="font-size:12px;color:#1d1d1f">success</span>
+            <span style="font-size:12px;color:#6e6e73">2 小时前</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pros-cons" style="margin-top:24px">
+  <div class="pros">
+    <h4>推荐 A 的原因</h4>
+    <ul>
+      <li>第一眼就能看见“最后部署时间”</li>
+      <li>不明显增加卡片高度</li>
+      <li>和运行中耗时徽章属于同一信息层级，易统一</li>
+    </ul>
+  </div>
+  <div class="cons">
+    <h4>B 的代价</h4>
+    <ul>
+      <li>卡片会更高，列表密度下降</li>
+      <li>标题、状态、时间会形成三层结构，略重</li>
+      <li>按钮区更容易被往下挤</li>
+    </ul>
+  </div>
+</div>

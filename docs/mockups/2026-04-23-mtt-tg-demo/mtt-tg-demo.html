@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MTT Telegram Push Demo</title>
+    <style>
+      :root {
+        --bg-top: #0b1e34;
+        --bg-bottom: #142f52;
+        --panel: rgba(255, 255, 255, 0.08);
+        --panel-border: rgba(255, 255, 255, 0.12);
+        --phone-shell: #1d2e44;
+        --phone-edge: #08121f;
+        --screen-top: #cfe8fb;
+        --screen-bottom: #e7f3fb;
+        --bubble: #f8f2de;
+        --bubble-border: rgba(68, 87, 112, 0.14);
+        --button-top: #63b8ff;
+        --button-bottom: #2b8cff;
+        --button-text: #ffffff;
+        --text-main: #102130;
+        --text-subtle: #6b7c8f;
+        --heading: #edf5ff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "SF Pro Display", "Segoe UI", Arial, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(89, 172, 255, 0.2), transparent 28%),
+          radial-gradient(circle at bottom right, rgba(255, 224, 138, 0.16), transparent 24%),
+          linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+        color: var(--heading);
+      }
+
+      .page {
+        width: 1600px;
+        margin: 0 auto;
+        padding: 56px 52px 64px;
+      }
+
+      .hero {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 32px;
+        margin-bottom: 40px;
+      }
+
+      .hero-copy h1 {
+        margin: 0 0 10px;
+        font-size: 44px;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      .hero-copy p {
+        margin: 0;
+        max-width: 760px;
+        color: rgba(237, 245, 255, 0.78);
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+      .meta {
+        padding: 14px 18px;
+        border: 1px solid var(--panel-border);
+        border-radius: 18px;
+        background: var(--panel);
+        color: rgba(237, 245, 255, 0.82);
+        font-size: 14px;
+        white-space: nowrap;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 28px;
+      }
+
+      .card {
+        padding: 18px;
+        border: 1px solid var(--panel-border);
+        border-radius: 28px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.05));
+        box-shadow: 0 24px 48px rgba(1, 10, 24, 0.26);
+      }
+
+      .card-label {
+        margin: 0 0 14px;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(237, 245, 255, 0.74);
+      }
+
+      .phone {
+        position: relative;
+        min-height: 470px;
+        padding: 10px;
+        border-radius: 28px;
+        background: linear-gradient(180deg, #2c3f57, var(--phone-shell));
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .phone::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 28px;
+        box-shadow: inset 0 0 0 1px rgba(8, 18, 31, 0.45);
+        pointer-events: none;
+      }
+
+      .screen {
+        height: 100%;
+        min-height: 450px;
+        padding: 14px;
+        border-radius: 22px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 22%),
+          linear-gradient(180deg, var(--screen-top), var(--screen-bottom));
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 6px 4px 14px;
+      }
+
+      .avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        font-weight: 700;
+        color: #ffffff;
+        background: linear-gradient(180deg, #ffcc63, #ff9e2b);
+        box-shadow: 0 10px 18px rgba(255, 156, 54, 0.28);
+      }
+
+      .name {
+        color: var(--text-main);
+        font-weight: 700;
+        font-size: 15px;
+      }
+
+      .status {
+        color: var(--text-subtle);
+        font-size: 12px;
+      }
+
+      .bubble {
+        margin-top: 4px;
+        padding: 16px 16px 14px;
+        border-radius: 18px 18px 6px 18px;
+        background: var(--bubble);
+        border: 1px solid var(--bubble-border);
+        box-shadow: 0 12px 18px rgba(16, 33, 48, 0.08);
+      }
+
+      .bubble p {
+        margin: 0;
+        color: var(--text-main);
+        font-size: 15px;
+        line-height: 1.5;
+        white-space: pre-line;
+      }
+
+      .bubble strong {
+        font-weight: 700;
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 14px;
+        min-width: 188px;
+        padding: 12px 18px;
+        border-radius: 14px;
+        background: linear-gradient(180deg, var(--button-top), var(--button-bottom));
+        color: var(--button-text);
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        box-shadow: 0 12px 20px rgba(43, 140, 255, 0.24);
+      }
+
+      .cta.muted {
+        min-width: auto;
+        background: linear-gradient(180deg, #f3f5f7, #e2e8ee);
+        color: #446072;
+        box-shadow: none;
+      }
+
+      .time {
+        margin-top: 10px;
+        text-align: right;
+        color: var(--text-subtle);
+        font-size: 11px;
+      }
+
+      .no-button-note {
+        margin-top: 14px;
+        color: var(--text-subtle);
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <div class="hero-copy">
+          <h1>MTT Telegram Push Demo</h1>
+          <p>
+            Player-side Telegram notifications for tournament approval, rejection, starting reminder,
+            cancellation, finish result, and claim-ready flow.
+          </p>
+        </div>
+        <div class="meta">AlanoGames Bot • 6 message types • Mobile chat preview</div>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <p class="card-label">1. Registration Approved</p>
+          <div class="phone">
+            <div class="screen">
+              <div class="topbar">
+                <div class="avatar">A</div>
+                <div>
+                  <div class="name">AlanoGames Bot</div>
+                  <div class="status">bot • now</div>
+                </div>
+              </div>
+              <div class="bubble">
+                <p>✅ Your registration for <strong>Sunday Main Event</strong> has been approved.
+
+Start Time: <strong>Apr 25, 20:00</strong>
+Buy-in: <strong>100 USDT</strong>
+
+Tap below to view the tournament details.</p>
+                <div class="cta">🎯 View Tournament</div>
+                <div class="time">11:42</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <p class="card-label">2. Registration Rejected</p>
+          <div class="phone">
+            <div class="screen">
+              <div class="topbar">
+                <div class="avatar">A</div>
+                <div>
+                  <div class="name">AlanoGames Bot</div>
+                  <div class="status">bot • now</div>
+                </div>
+              </div>
+              <div class="bubble">
+                <p>❌ Your registration for <strong>Sunday Main Event</strong> was not approved.
+
+Please check the tournament details for more information.</p>
+                <div class="cta muted">📋 View Details</div>
+                <div class="time">11:42</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <p class="card-label">3. Tournament Starting</p>
+          <div class="phone">
+            <div class="screen">
+              <div class="topbar">
+                <div class="avatar">A</div>
+                <div>
+                  <div class="name">AlanoGames Bot</div>
+                  <div class="status">bot • now</div>
+                </div>
+              </div>
+              <div class="bubble">
+                <p>⏰ <strong>Sunday Main Event</strong> will start in <strong>10 minutes</strong>.
+
+Please get ready and enter on time.</p>
+                <div class="cta">🏁 Get Ready</div>
+                <div class="time">19:50</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <p class="card-label">4. Tournament Cancelled</p>
+          <div class="phone">
+            <div class="screen">
+              <div class="topbar">
+                <div class="avatar">A</div>
+                <div>
+                  <div class="name">AlanoGames Bot</div>
+                  <div class="status">bot • now</div>
+                </div>
+              </div>
+              <div class="bubble">
+                <p>⚠️ <strong>Sunday Main Event</strong> has been cancelled.
+
+Any paid fee will be returned according to the tournament rules.</p>
+                <div class="no-button-note">Pure text only</div>
+                <div class="time">18:03</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <p class="card-label">5. Tournament Finished</p>
+          <div class="phone">
+            <div class="screen">
+              <div class="topbar">
+                <div class="avatar">A</div>
+                <div>
+                  <div class="name">AlanoGames Bot</div>
+                  <div class="status">bot • now</div>
+                </div>
+              </div>
+              <div class="bubble">
+                <p>🏁 <strong>Sunday Main Event</strong> has finished.
+
+Final rankings and rewards will be updated shortly.
+Tap below to view the result.</p>
+                <div class="cta">📊 View Result</div>
+                <div class="time">23:18</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <p class="card-label">6. Prize Claimable</p>
+          <div class="phone">
+            <div class="screen">
+              <div class="topbar">
+                <div class="avatar">A</div>
+                <div>
+                  <div class="name">AlanoGames Bot</div>
+                  <div class="status">bot • now</div>
+                </div>
+              </div>
+              <div class="bubble">
+                <p>🏆 Your prize for <strong>Sunday Main Event</strong> is now ready to claim.
+
+Prize: <strong>520 USDT</strong>
+
+Tap below to submit your claim information.</p>
+                <div class="cta">💰 Claim Prize</div>
+                <div class="time">23:19</div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

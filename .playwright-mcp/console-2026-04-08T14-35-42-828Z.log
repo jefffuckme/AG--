@@ -1,0 +1,82 @@
+[   10006ms] [LOG] [Telegram.WebView] > postEvent web_app_set_header_color {color_key: bg_color} @ https://telegram.org/js/telegram-web-app.js:134
+[   10009ms] [LOG] [Telegram.WebView] > postEvent web_app_set_bottom_bar_color {color: #ffffff} @ https://telegram.org/js/telegram-web-app.js:134
+[   10010ms] [LOG] [Telegram.WebView] > postEvent web_app_request_theme  @ https://telegram.org/js/telegram-web-app.js:134
+[   10010ms] [LOG] [Telegram.WebView] > postEvent web_app_request_viewport  @ https://telegram.org/js/telegram-web-app.js:134
+[   10010ms] [LOG] [Telegram.WebView] > postEvent web_app_request_safe_area  @ https://telegram.org/js/telegram-web-app.js:134
+[   10010ms] [LOG] [Telegram.WebView] > postEvent web_app_request_content_safe_area  @ https://telegram.org/js/telegram-web-app.js:134
+[   10027ms] [ERROR] Failed to load resource: the server responded with a status of 504 () @ https://localhost:5174/node_modules/.vite/deps/vant_es_toast_style.js?v=dd999b6c:0
+[   10047ms] [ERROR] Failed to load resource: the server responded with a status of 504 () @ https://localhost:5174/node_modules/.vite/deps/vant_es_dialog_style.js?v=1a4a6821:0
+[   10047ms] [ERROR] Failed to load resource: the server responded with a status of 504 () @ https://localhost:5174/node_modules/.vite/deps/vant_es_popup_style.js?v=e2bdd11a:0
+[   10047ms] [ERROR] Failed to load resource: the server responded with a status of 504 () @ https://localhost:5174/node_modules/.vite/deps/vant_es_calendar_style.js?v=7dff17ac:0
+[   10048ms] [ERROR] Failed to load resource: the server responded with a status of 504 () @ https://localhost:5174/node_modules/.vite/deps/vant_es_date-picker_style.js?v=b686862a:0
+[   10057ms] [ERROR] Failed to load resource: the server responded with a status of 504 () @ https://localhost:5174/node_modules/.vite/deps/vue.js?v=2bea98e6:0
+[   10058ms] [ERROR] Failed to load resource: the server responded with a status of 504 () @ https://localhost:5174/node_modules/.vite/deps/pinia.js?v=55ca298b:0
+[   10058ms] [ERROR] Failed to load resource: the server responded with a status of 504 () @ https://localhost:5174/node_modules/.vite/deps/vant.js?v=37c14783:0
+[   10058ms] [ERROR] Failed to load resource: the server responded with a status of 504 () @ https://localhost:5174/node_modules/.vite/deps/vant_es_locale_lang_en-US.js?v=84e9447d:0
+[   10058ms] [ERROR] Failed to load resource: the server responded with a status of 504 () @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=d4e5917e:0
+[   10059ms] [ERROR] Failed to load resource: the server responded with a status of 504 () @ https://localhost:5174/node_modules/.vite/deps/@vant_touch-emulator.js?v=009f4881:0
+[   13349ms] [WARNING] The resource https://localhost:5174/src/assets/font/Poppins-Regular.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://localhost:5174/:0
+[   13350ms] [WARNING] The resource https://localhost:5174/src/assets/font/Poppins-SemiBold.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://localhost:5174/:0
+[   71879ms] [LOG] [Telegram.WebView] > postEvent web_app_set_header_color {color_key: bg_color} @ https://telegram.org/js/telegram-web-app.js:134
+[   71879ms] [LOG] [Telegram.WebView] > postEvent web_app_set_bottom_bar_color {color: #ffffff} @ https://telegram.org/js/telegram-web-app.js:134
+[   71879ms] [LOG] [Telegram.WebView] > postEvent web_app_request_theme  @ https://telegram.org/js/telegram-web-app.js:134
+[   71879ms] [LOG] [Telegram.WebView] > postEvent web_app_request_viewport  @ https://telegram.org/js/telegram-web-app.js:134
+[   71879ms] [LOG] [Telegram.WebView] > postEvent web_app_request_safe_area  @ https://telegram.org/js/telegram-web-app.js:134
+[   71879ms] [LOG] [Telegram.WebView] > postEvent web_app_request_content_safe_area  @ https://telegram.org/js/telegram-web-app.js:134
+[   72333ms] [LOG] [Telegram.WebView] > postEvent web_app_expand  @ https://telegram.org/js/telegram-web-app.js:134
+[   72333ms] [WARNING] [Telegram.WebApp] Closing confirmation is not supported in version 6.0 @ https://telegram.org/js/telegram-web-app.js:592
+[   72553ms] LaunchParamsRetrieveError: Unable to retrieve launch parameters from any known source. Perhaps, you have opened your app outside Telegram?
+📖 Refer to docs for more information:
+https://docs.telegram-mini-apps.com/packages/telegram-apps-bridge/environment
+
+Collected errors:
+Source: window.location.href / Invalid key: Expected "tgWebAppPlatform" but received undefined
+Source: performance navigation entries / Invalid key: Expected "tgWebAppPlatform" but received undefined
+Source: local storage / Source is empty
+    at ee$1 (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=cccc6d99:2663:9)
+    at Se$1 (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=cccc6d99:2666:16)
+    at Object.SmjKx (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=cccc6d99:4244:14)
+    at SessionController.init (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=cccc6d99:4247:65)
+    at App.init (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=cccc6d99:10333:41)
+    at Object.init (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=cccc6d99:10486:37)
+    at bootstrap (https://localhost:5174/src/main.ts:72:25)
+[   72783ms] [WARNING] [Telegram.WebApp] BackButton is not supported in version 6.0 @ https://localhost:5174/src/components/DebugPanel/index.vue:212
+[   72785ms] [LOG] [Telegram.WebView] > postEvent web_app_ready  @ https://localhost:5174/src/components/DebugPanel/index.vue:208
+[   74118ms] [LOG] [Telegram.WebView] > postEvent web_app_set_header_color {color_key: bg_color} @ https://telegram.org/js/telegram-web-app.js:134
+[   74118ms] [LOG] [Telegram.WebView] > postEvent web_app_set_bottom_bar_color {color: #ffffff} @ https://telegram.org/js/telegram-web-app.js:134
+[   74118ms] [LOG] [Telegram.WebView] > postEvent web_app_request_theme  @ https://telegram.org/js/telegram-web-app.js:134
+[   74118ms] [LOG] [Telegram.WebView] > postEvent web_app_request_viewport  @ https://telegram.org/js/telegram-web-app.js:134
+[   74118ms] [LOG] [Telegram.WebView] > postEvent web_app_request_safe_area  @ https://telegram.org/js/telegram-web-app.js:134
+[   74118ms] [LOG] [Telegram.WebView] > postEvent web_app_request_content_safe_area  @ https://telegram.org/js/telegram-web-app.js:134
+[   74940ms] [LOG] [Telegram.WebView] > postEvent web_app_expand  @ https://telegram.org/js/telegram-web-app.js:134
+[   74940ms] [WARNING] [Telegram.WebApp] Closing confirmation is not supported in version 6.0 @ https://telegram.org/js/telegram-web-app.js:592
+[   75178ms] LaunchParamsRetrieveError: Unable to retrieve launch parameters from any known source. Perhaps, you have opened your app outside Telegram?
+📖 Refer to docs for more information:
+https://docs.telegram-mini-apps.com/packages/telegram-apps-bridge/environment
+
+Collected errors:
+Source: window.location.href / Invalid key: Expected "tgWebAppPlatform" but received undefined
+Source: performance navigation entries / Invalid key: Expected "tgWebAppPlatform" but received undefined
+Source: local storage / Source is empty
+    at ee$1 (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=90e2363b:2663:9)
+    at Se$1 (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=90e2363b:2666:16)
+    at Object.SmjKx (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=90e2363b:4244:14)
+    at SessionController.init (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=90e2363b:4247:65)
+    at App.init (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=90e2363b:10333:41)
+    at Object.init (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=90e2363b:10486:37)
+    at bootstrap (https://localhost:5174/src/main.ts:72:25)
+[   75305ms] [LOG] [Telegram.WebView] > postEvent web_app_ready  @ https://localhost:5174/src/components/DebugPanel/index.vue:208
+[   75343ms] [WARNING] [Telegram.WebApp] BackButton is not supported in version 6.0 @ https://localhost:5174/src/components/DebugPanel/index.vue:212
+[   76922ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=4f2b4153cc264f2290beefc3979b8df5&sessionVersion=sv_6e93b637b099418381f836fb1d27cd24' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=90e2363b:8188
+[   77782ms] [WARNING] [intlify] Not found 'newHome.my_room' key in 'zh' locale messages. @ https://localhost:5174/src/components/DebugPanel/index.vue:212
+[   77782ms] [WARNING] [intlify] Fall back to translate 'newHome.my_room' key with 'en-US' locale. @ https://localhost:5174/src/components/DebugPanel/index.vue:212
+[   77782ms] [WARNING] [intlify] Fall back to translate 'newHome.my_room' key with 'en' locale. @ https://localhost:5174/src/components/DebugPanel/index.vue:212
+[   77782ms] [WARNING] [intlify] Not found 'newHome.my_room' key in 'en' locale messages. @ https://localhost:5174/src/components/DebugPanel/index.vue:212
+[   78819ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=4f2b4153cc264f2290beefc3979b8df5&sessionVersion=sv_6e93b637b099418381f836fb1d27cd24' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=90e2363b:8188
+[   80746ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=4f2b4153cc264f2290beefc3979b8df5&sessionVersion=sv_6e93b637b099418381f836fb1d27cd24' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=90e2363b:8188
+[   82768ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=4f2b4153cc264f2290beefc3979b8df5&sessionVersion=sv_6e93b637b099418381f836fb1d27cd24' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=90e2363b:8188
+[   84619ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=4f2b4153cc264f2290beefc3979b8df5&sessionVersion=sv_6e93b637b099418381f836fb1d27cd24' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=90e2363b:8188
+[   86593ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=4f2b4153cc264f2290beefc3979b8df5&sessionVersion=sv_6e93b637b099418381f836fb1d27cd24' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=90e2363b:8188
+[   90610ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=4f2b4153cc264f2290beefc3979b8df5&sessionVersion=sv_6e93b637b099418381f836fb1d27cd24' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=90e2363b:8188
+[   93807ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=4f2b4153cc264f2290beefc3979b8df5&sessionVersion=sv_6e93b637b099418381f836fb1d27cd24' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=90e2363b:8188
+[   96784ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=4f2b4153cc264f2290beefc3979b8df5&sessionVersion=sv_6e93b637b099418381f836fb1d27cd24' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=90e2363b:8188

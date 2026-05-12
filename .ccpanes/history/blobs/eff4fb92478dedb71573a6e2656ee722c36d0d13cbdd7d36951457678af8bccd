@@ -1,0 +1,1 @@
+import{L as p}from"./index-z9v5vLBK.js";const i=a=>p.post({url:"/prod-api/app-api/game/private-room/admin/grant",data:a}),o=a=>p.post({url:"/prod-api/app-api/game/private-room/admin/revoke",data:a}),t=()=>p.get({url:"/prod-api/app-api/game/private-room/admin/list"});export{i as a,t as g,o as r};

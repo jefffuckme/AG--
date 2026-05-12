@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/src/assets/images/new/ag_logo2.png" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, user-scalable=no,viewport-fit=cover"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="full-screen" content="true" />
+    <link rel="dns-prefetch" href="https://m.testgames.org" />
+    <link rel="preconnect" href="https://m.testgames.org" crossorigin />
+    <link rel="dns-prefetch" href="https://www.testgames.org" />
+    <link rel="preconnect" href="https://www.testgames.org" crossorigin />
+    <link
+      rel="preload"
+      href="/assets/Poppins-Regular-IV_IoRm8.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/Poppins-SemiBold-LnfXaqgk.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <script src="https://telegram.org/js/telegram-web-app.js" crossorigin="anonymous" integrity="sha384-1XuC9S4cgk6RH1oCsL2diDRwLiiivu/oZHNfxYUitEFuiKpP5ceNbzu220KKrcK+"></script>
+    <title>Alano</title>
+    <script type="module" crossorigin src="/assets/index-z9v5vLBK.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-utO-HZ3T.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-vue-CtQOhHTM.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-vant-DqdKPjzE.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-pinia-Cs5ZcHDS.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-axios-C0Zqfgkc.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-qs-DTa5PUZy.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-lodash-YChlDb7Z.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-dayjs-D6CLcaci.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-big-Dt19vo1Q.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-vueuse-sound-DCUX3W8e.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-vue-i18n-IbcGAPS1.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-vue-router-CS37Egd0.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-vueuse-D8TH1NAz.js">
+    <link rel="stylesheet" crossorigin href="/assets/vendor-Bb1A1T9h.css">
+    <link rel="stylesheet" crossorigin href="/assets/vendor-vant-C28QzPuN.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-Belx_E4_.css">
+  </head>
+  <body>
+    <!-- 内联背景色兜底：Vue 挂载前防止黑屏闪烁 -->
+    <div id="app" style="background:#000000;min-height:100vh;"></div>
+  </body>
+</html>

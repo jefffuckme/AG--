@@ -1,0 +1,74 @@
+[      23ms] [WARNING] WebSocket connection to 'wss://ws.testgames.org/mws?token=4f2b4153cc264f2290beefc3979b8df5&sessionVersion=sv_6e93b637b099418381f836fb1d27cd24' failed: WebSocket is closed before the connection is established. @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=90e2363b:8174
+[      44ms] [LOG] [Telegram.WebView] > postEvent web_app_set_header_color {color_key: bg_color} @ https://telegram.org/js/telegram-web-app.js:134
+[      45ms] [LOG] [Telegram.WebView] > postEvent web_app_set_bottom_bar_color {color: #ffffff} @ https://telegram.org/js/telegram-web-app.js:134
+[      45ms] [LOG] [Telegram.WebView] > postEvent web_app_request_theme  @ https://telegram.org/js/telegram-web-app.js:134
+[      45ms] [LOG] [Telegram.WebView] > postEvent web_app_request_viewport  @ https://telegram.org/js/telegram-web-app.js:134
+[      45ms] [LOG] [Telegram.WebView] > postEvent web_app_request_safe_area  @ https://telegram.org/js/telegram-web-app.js:134
+[      45ms] [LOG] [Telegram.WebView] > postEvent web_app_request_content_safe_area  @ https://telegram.org/js/telegram-web-app.js:134
+[     158ms] [LOG] [Telegram.WebView] > postEvent web_app_expand  @ https://telegram.org/js/telegram-web-app.js:134
+[     158ms] [WARNING] [Telegram.WebApp] Closing confirmation is not supported in version 6.0 @ https://telegram.org/js/telegram-web-app.js:592
+[     245ms] LaunchParamsRetrieveError: Unable to retrieve launch parameters from any known source. Perhaps, you have opened your app outside Telegram?
+📖 Refer to docs for more information:
+https://docs.telegram-mini-apps.com/packages/telegram-apps-bridge/environment
+
+Collected errors:
+Source: window.location.href / Invalid key: Expected "tgWebAppPlatform" but received undefined
+Source: performance navigation entries / Invalid key: Expected "tgWebAppPlatform" but received undefined
+Source: local storage / Source is empty
+    at ee$1 (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=90e2363b:2663:9)
+    at Se$1 (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=90e2363b:2666:16)
+    at Object.SmjKx (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=90e2363b:4244:14)
+    at SessionController.init (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=90e2363b:4247:65)
+    at App.init (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=90e2363b:10333:41)
+    at Object.init (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=90e2363b:10486:37)
+    at bootstrap (https://localhost:5174/src/main.ts:72:25)
+[     187ms] [LOG] [Telegram.WebView] > postEvent web_app_ready  @ https://localhost:5174/src/components/DebugPanel/index.vue:208
+[    3472ms] [WARNING] [Telegram.WebApp] BackButton is not supported in version 6.0 @ https://localhost:5174/src/components/DebugPanel/index.vue:212
+[    3472ms] [WARNING] [Telegram.WebApp] BackButton is not supported in version 6.0 @ https://localhost:5174/src/components/DebugPanel/index.vue:212
+[    3488ms] [WARNING] WebSocket connection to 'wss://ws.testgames.org/mws?token=65d854e3555c4b19bdf20e7add0bab53&sessionVersion=sv_e3cd31f013fa43578e436d873793bed3' failed: WebSocket is closed before the connection is established. @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=90e2363b:8174
+[    3568ms] [LOG] [Telegram.WebView] > postEvent web_app_set_header_color {color_key: bg_color} @ https://telegram.org/js/telegram-web-app.js:134
+[    3568ms] [LOG] [Telegram.WebView] > postEvent web_app_set_bottom_bar_color {color: #ffffff} @ https://telegram.org/js/telegram-web-app.js:134
+[    3568ms] [LOG] [Telegram.WebView] > postEvent web_app_request_theme  @ https://telegram.org/js/telegram-web-app.js:134
+[    3568ms] [LOG] [Telegram.WebView] > postEvent web_app_request_viewport  @ https://telegram.org/js/telegram-web-app.js:134
+[    3568ms] [LOG] [Telegram.WebView] > postEvent web_app_request_safe_area  @ https://telegram.org/js/telegram-web-app.js:134
+[    3568ms] [LOG] [Telegram.WebView] > postEvent web_app_request_content_safe_area  @ https://telegram.org/js/telegram-web-app.js:134
+[    4291ms] [LOG] [Telegram.WebView] > postEvent web_app_expand  @ https://telegram.org/js/telegram-web-app.js:134
+[    4291ms] [WARNING] [Telegram.WebApp] Closing confirmation is not supported in version 6.0 @ https://telegram.org/js/telegram-web-app.js:592
+[    4510ms] LaunchParamsRetrieveError: Unable to retrieve launch parameters from any known source. Perhaps, you have opened your app outside Telegram?
+📖 Refer to docs for more information:
+https://docs.telegram-mini-apps.com/packages/telegram-apps-bridge/environment
+
+Collected errors:
+Source: window.location.href / Invalid key: Expected "tgWebAppPlatform" but received undefined
+Source: performance navigation entries / Invalid key: Expected "tgWebAppPlatform" but received undefined
+Source: local storage / Source is empty
+    at ee$1 (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=1c908c4c:2663:9)
+    at Se$1 (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=1c908c4c:2666:16)
+    at Object.SmjKx (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=1c908c4c:4244:14)
+    at SessionController.init (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=1c908c4c:4247:65)
+    at App.init (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=1c908c4c:10333:41)
+    at Object.init (https://localhost:5174/node_modules/.vite/deps/@telegram-apps_analytics.js?v=1c908c4c:10486:37)
+    at bootstrap (https://localhost:5174/src/main.ts:72:25)
+[    4752ms] [LOG] [Telegram.WebView] > postEvent web_app_ready  @ https://localhost:5174/src/components/DebugPanel/index.vue:208
+[    6046ms] [WARNING] [Telegram.WebApp] BackButton is not supported in version 6.0 @ https://localhost:5174/src/components/DebugPanel/index.vue:212
+[    6046ms] [WARNING] [Telegram.WebApp] BackButton is not supported in version 6.0 @ https://localhost:5174/src/components/DebugPanel/index.vue:212
+[    6681ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
+[    9666ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
+[   11615ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
+[   13556ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
+[   15501ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
+[   17382ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
+[   19196ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
+[   22126ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
+[   24210ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
+[   26088ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
+[   28020ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
+[   29976ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
+[   32028ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
+[   33955ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
+[   37925ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
+[   39839ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
+[   41688ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
+[   43578ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
+[   45426ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
+[   47309ms] [ERROR] WebSocket connection to 'wss://ws.testgames.org/mws?token=b194f111eab5467e9bc5dd21b46fe908&sessionVersion=sv_5e696857ef3f4f17b4126284cbc52c1b' failed: Error during WebSocket handshake: Unexpected response code: 403 @ https://localhost:5174/node_modules/.vite/deps/@vueuse_core.js?v=1c908c4c:8188
