@@ -213,6 +213,13 @@ thread/   RoomTask 接口, TexasPokerExceptionHandler
 - API/字段/枚举/状态码任意一侧发生变更，必须在同一任务内验证另一侧是否匹配。
 - Bug 诊断请沿完整链路追查：`前端页面 → composable/store → API wrapper → 后端 controller → service → DTO 合同`。
 
+## 提交与推送规则
+
+- 以后代码改完后，默认自动执行必要验证，然后提交并推送同步代码，不再等待用户额外要求“提交/推送”。
+- 提交前必须检查 git 状态，只提交本次任务相关文件，不纳入无关本地改动、临时文件、日志、截图或用户未确认的变更。
+- 如果验证被既有问题阻塞，仍需记录阻塞原因；只有在改动范围清晰且不扩大风险时，才允许提交并推送本次相关修复。
+- 提交信息保持中文，按 `feat|fix|refactor|docs(scope): summary` 风格描述改动与影响范围。
+
 ## 基础设施
 
 - **数据库**：MySQL 5.7.44（docker-compose）
