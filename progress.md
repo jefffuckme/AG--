@@ -155,6 +155,13 @@
 - 最终复核：提交后重新运行同一组 Vitest、`pnpm type-check`、`git diff --check` 均通过；提交范围确认仅包含 7 个业务源码/测试文件。
 - 推送完成：`yekes-web-javascript/main` 已推送到 `origin/main`，当前本地与远端提交对齐；推送包含 `b91fede1 fix(club): 显示玩家管理俱乐部信息`、`03364c60 docs: 压缩进度记录`，以及随后出现并已推送的 `573125f8 fix(records): 调整我的牌局记录统计展示`。
 
+## 2026-05-13 01:00 CST - 分析管理员给房主上分谷歌验证失败
+- 任务目标：分析管理员角色在玩家管理中给房主执行额度上分时，页面提示“谷歌验证失败”的原因。
+- 影响范围：`yekes-web-javascript` 额度调整页/玩家管理入口与 `yekes-java` 私房 credit adjust 接口、Google 2FA 校验链路。
+- 当前状态：开始按前端提交参数 -> 后端 controller/service -> Google 校验工具链路排查；本轮先分析原因，不改代码。
+- 结论：截图当前的“该用户尚未加入您的房间”来自后端 service 层二次成员校验。前端玩家管理进入额度调整会传 `memberId=620006` 与 `ownerId=620006`；Controller 层已对 `targetOwnerId == memberId` 做豁免，但 `PrivateRoomApplicationServiceImpl.adjustCredit` 又无条件执行 `clubMemberService.isMember(ownerId, memberId)`，房主通常不是自己房间的成员记录，因此管理员给房主调额会被误拦截。若提示“谷歌验证失败”，则是更早阶段按当前管理员本人校验 `googleCode` 失败。
+- 修复进展：准备在 `yekes-java` 服务层补回归测试并修复 `ownerId == memberId` 时的成员校验豁免；本次只提交/推送后端相关文件。
+
 ## 2026-05-13 调整我的牌局记录统计口径
 - 任务目标：我的-牌局记录入口按当前用户维度展示，总流水改为我自己的总下注，总抽水改为我自己的盈亏，避免与私人房间所有游戏记录混用。
 - 影响范围：优先追踪 new-yekes-game-javascript 牌局记录页面/接口映射，必要时核对 yekes-java 后端记录接口。
@@ -181,3 +188,64 @@
 - 任务目标：确认 yekes-web-javascript 中我的牌局记录统计展示修复是否已提交。
 - 当前状态：检查前端子仓库提交状态和最新提交。
 - 结果：`yekes-web-javascript` 工作区干净，修复提交 `573125f8 fix(records): 调整我的牌局记录统计展示` 已在历史中；进度记录提交 `55a12bbd docs: 记录进度推送结果` 已随本轮推送同步到 `origin/main`。
+
+## 2026-05-13 - 牌桌内屏蔽申请弹窗
+- 任务目标：玩家已进入牌桌时，上下分申请和授权申请不要弹出遮挡游戏。
+- 影响范围：优先检查 yekes-web-javascript H5 弹窗/通知逻辑，必要时核对 new-yekes-game-javascript 牌桌 iframe 状态边界。
+- 当前状态：开始定位申请弹窗来源和牌桌状态判断。
+- 红测：新增 gameOverlayDialogs 规则测试，初次运行因规则模块不存在失败，确认测试覆盖牌桌内屏蔽审核弹窗。
+- 实现：新增 shouldSuppressReviewDialogsInGame，并在 App.vue 屏蔽 /game 路由下的申请审核与上下分审核弹窗渲染，保留通知状态。
+- 验证：gameOverlayDialogs 与 bootstrapGlobalDialogsPolicy 单测通过；pnpm type-check 通过。继续核对其它同类上分/授权弹窗入口。
+- 范围补齐：发现授权申请 authTableShow 与上分申请 topupRequestShow 也是全局弹窗，已一起纳入 /game 牌桌路由屏蔽；审核通知状态不清空，离开牌桌后仍可处理。
+- 验证完成：相关 Vitest 4 tests 通过，pnpm type-check 通过，pnpm build-only 通过，git diff --check 通过。准备提交 yekes-web-javascript scoped commit。
+- 提交完成：yekes-web-javascript `691747fb fix(game): 牌桌内屏蔽申请弹窗`。验证：相关 Vitest、pnpm type-check、pnpm build-only、git diff --check 均通过。注意：子仓库 progress.md 存在既有无关未提交分析记录，未纳入本次提交；未推送。
+- 文档收尾：`yekes-web-javascript` 进度记录已提交 `bbf57ac9 docs: 记录牌桌弹窗推送结果` 并推送到 `origin/main`。
+
+## 2026-05-13 - 推送牌桌内屏蔽申请弹窗修复
+- 任务目标：按用户要求推送已提交的牌桌内屏蔽申请弹窗修复。
+- 影响范围：yekes-web-javascript。
+- 当前状态：开始确认分支状态并准备推送。
+- 推送完成：`yekes-web-javascript/main` 已推送到 `origin/main`，包含 `691747fb fix(game): 牌桌内屏蔽申请弹窗`。推送后本地与远端提交对齐；子仓库仍有既有未提交 progress.md 本地记录，未纳入推送。
+- 补充推送：`bbf57ac9 docs: 记录牌桌弹窗推送结果` 已推送；`yekes-web-javascript` 当前本地与 `origin/main` 对齐。
+
+## 2026-05-13 - 推送房主本人调额修复
+- 任务目标：提交并推送管理员给房主本人 CREDIT 调额的后端修复。
+- 影响范围：`yekes-java`。
+- 完成状态：`PrivateRoomApplicationServiceImpl.adjustCredit` 已兼容 `ownerId == memberId`，跳过成员关系校验；补充回归测试覆盖管理员给房主本人调额不应调用成员校验。
+- 验证：`mvn -pl yudao-module-game/yudao-module-game-biz -Dtest=PrivateRoomApplicationServiceImplCreditAdjustTest test` 仍被既有 main compile 错误阻塞，阻塞点为 `MessageType.PRIVATE_ROOM_*`、`UserHookRoomAction`、`TexasPokerPlayerRotationManager` 等非本次改动文件；`git diff --check` 通过。
+- 提交与推送：`db2aefdd8 test(room): 补充房主本人调额回归` 与 `14d62ac54 docs: 记录房主调额修复推送结果` 已推送到 `origin/main`。
+
+## 2026-05-13 - H5 邀请链接复制失败
+- 任务目标：修复点击首页「邀請連結」后提示「複製失敗」的问题。
+- 影响范围：`yekes-web-javascript` 通用复制 Hook `useCopy`。
+- 完成状态：Telegram `copyTextToClipboard` 回调失败时继续降级到浏览器 Clipboard API 和 `execCommand`，只有所有复制路径失败后才提示失败；补充 `useCopy` 回归测试。
+- 验证：`pnpm vitest run src/hooks/__tests__/useCopy.test.ts` 通过，2 tests；`pnpm type-check` 通过；`pnpm build-only` 通过；`git diff --check` 通过。
+- 提交与推送：`yekes-web-javascript` `c649c129 fix(copy): 修复邀请链接复制降级` 已推送到 `origin/main`。
+
+## 2026-05-13 - H5 邀请链接复制失败
+- 任务目标：修复点击首页「邀請連結」后提示「複製失敗」的问题。
+- 影响范围：yekes-web-javascript；当前判断为前端复制兼容链路，暂未发现需要后端配合的字段或接口变更。
+- 当前状态：已定位到 src/hooks/useCopy.ts；Telegram copyTextToClipboard 失败后直接返回，没有继续执行浏览器 Clipboard/execCommand 回退。下一步先补回归测试。
+
+- 红测：useCopy 回归测试已失败在预期断言：Telegram 复制失败后未进入浏览器剪贴板/execCommand 回退。
+
+- 实现：useCopy 改为 Telegram -> navigator.clipboard -> execCommand 三段降级；Telegram 失败、异常或无回调时不再立即弹失败。
+
+- 验证进展：useCopy 单测 3 tests 通过；pnpm type-check 通过。继续执行 build-only 与 diff 检查。
+
+- 补充修复：将 Telegram copyTextToClipboard 方法提取为局部常量，修复 strict type-check 下可能为 undefined 的类型收窄问题。最终验证 useCopy 单测 3 tests、pnpm type-check、pnpm build-only、git diff --check 均通过。
+
+## 2026-05-13 - Redmine #1116 信用分不足弹窗
+- 任务目标：修复 #1116，信用分不足提示改为统一标准对话框，并增加申请上分数量入口。
+- 影响范围：优先检查 yekes-web-javascript H5 前端，必要时核对后端上分申请 API。
+- 当前状态：已读取 Redmine 问题描述，开始下载参考图并定位现有信用分不足提示。
+
+## 2026-05-13 - 根工作区提交推送
+- 任务目标：按用户要求提交并推送当前已完成的子仓库指针和根进度记录。
+- 影响范围：根工作区 `progress.md` 与四个子仓库 gitlink 指针；不纳入 `prototypes/`、`screenshots/` 和子仓库未跟踪日志。
+- 当前状态：四个子仓库均已确认与各自远端对齐；准备基于远端干净 `master` 快照提交根工作区更新，避免推送旧本地历史中的敏感提交。
+
+## 2026-05-13 01:28 CST - 放开低风险俱乐部动作 Google 验证
+- 任务目标：审核授权、玩家申请上分、玩家申请下分不再要求 Google 验证，减少频繁弹窗。
+- 影响范围：跨 `yekes-web-javascript` 前端弹窗/请求参数与 `yekes-java` 后端 private-room invite/credit 接口校验。
+- 当前状态：开始按 TDD 核对前后端现状，若仍有 Google 校验残留则直接修复并提交推送。
