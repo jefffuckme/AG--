@@ -309,3 +309,5 @@
 - 修正前端类型：成员接口结果显式按数组归一化，重新运行 `pnpm type-check` 和相关 Vitest。
 
 - 完成状态：前端恢复大代理添加按钮与弹窗，新增 setAgentAPI 并通过 Google 2FA 提交；后端恢复 `/game/agent/set`，设置大代理前校验 Google 2FA、写 AGENT_SET 审计并调用 AgentService.setAgent，缺省返佣比例 1%。验证：前端定向 Vitest、pnpm type-check、前后端 diff --check 通过；后端定向 Maven 测试仍被既有模块编译错误阻塞。
+
+- 推送完成：yekes-web-javascript `adb11928 feat(club): 支持房主设置大代理` 已在 `origin/main`；yekes-java `0fc449e78 docs(club): 记录俱乐部验证规则复验结果` 已推送到 `origin/main`，包含前置 `ba6ed56ed fix(club): 放开上下分审批谷歌验证` 与 `c613377f3 feat(club): 支持房主设置大代理`。根仓库准备只提交 `progress.md` 和两个子仓库指针，继续排除 `prototypes/`、`screenshots/`、`yekes-admin-javascript` 临时差异。
