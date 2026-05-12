@@ -256,6 +256,8 @@
 - 当前状态：开始按 TDD 核对前后端现状，若仍有 Google 校验残留则直接修复并提交推送。
 - 红测：Home.texaspokerEntry 新期望失败，当前代码仍调用 insufficient_chips toast，未显示标准弹窗和去申请按钮。准备实现。
 - 继续处理：确认玩家提交上/下分申请和入会授权审批已有免 Google 覆盖；残留点集中在房主/管理员审核上分、下分申请，准备先更新测试契约再改实现。
+- 红测与实现：前端审核中心/工作台/全局审核弹窗已改为审核上/下分不弹 Google、不传 `googleCode`；后端 approve 上/下分接口已移除 Google 校验入参与调用。下一步执行前端定向测试、类型检查与后端定向 Maven 验证。
+- 验证：前端定向 Vitest 28 tests、`pnpm type-check`、`pnpm build-only`、前后端 `git diff --check` 均通过；后端定向 Maven 测试仍被既有 main compile 错误阻塞，未进入本次测试执行。
 
 ## 2026-05-13 - 分析 issue #1114
 - 任务目标：读取并分析 https://abcadwiki.org/issues/1114 对应问题，核对当前 AG 前后端实现边界。
@@ -286,3 +288,11 @@
 - 当前状态：开始定位页面组件、按钮显示条件和自己的房间上下文传参。
 
 - 定位进展：大代理页面当前模板只有空态和列表，`add-btn` 样式与添加弹窗样式仍在 CSS 中，但 Vue 模板/脚本已没有打开添加弹窗或调用新增接口的逻辑；继续从历史提交和后端接口确认恢复方式。
+
+- 验证进展：前端 promotionDataAccess 6 tests 通过；git diff --check 通过；pnpm type-check 通过。继续执行 build-only。
+
+- 验证完成：promotionDataAccess 6 tests、pnpm type-check、pnpm build-only、git diff --check 均通过。准备提交 #1114 相关前端文件。
+
+- 修复方案：恢复 H5 房主大代理添加入口，并恢复 APP `/game/agent/set` 后端能力；新增/调整测试要求添加大代理必须通过 Google 2FA，防止敏感授权无校验。
+
+- 提交推送完成：yekes-web-javascript `5e88ee26 fix(promotion): 增加推广记录页复制链接` 已推送到 origin/main。提交范围仅包含 #1114 相关页面、测试和进度记录；其它既有未提交审核/上分相关改动未纳入。
