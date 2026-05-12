@@ -23,6 +23,12 @@
 
 ## 最近完成
 
+### 2026-05-13 - 提交代码推送
+- 状态：处理中。
+- 目标：按用户要求提交并推送当前已完成代码改动。
+- 影响范围：先盘点根工作区和各子仓库状态，再只提交可确认的相关改动，避免混入临时文件或无关未跟踪内容。
+- 当前状态：根仓库存在 `progress.md` 本地记录、多个子仓库 dirty 标记以及 `prototypes/`、`screenshots/` 未跟踪目录；继续进入子仓库核对具体改动。
+
 ### 2026-05-13 - 记录自动提交推送规则
 - 状态：已完成。
 - 结果：已在 `CLAUDE.md` 新增“提交与推送规则”，明确以后代码改完后默认验证、提交并推送；同时要求只提交本次相关文件，并记录验证阻塞原因。
@@ -186,8 +192,7 @@
 - 完成状态：子仓库进度压缩与自动压缩规则已提交并推送；`yekes-java` 合并远端新增统计口径进度摘要后推送，`yekes-admin-javascript` 推送完成，`new-yekes-game-javascript` 已与远端对齐。
 - 提交：`yekes-web-javascript` `55a12bbd docs: 记录进度推送结果`；`yekes-java` `0bc6c1440 docs: 压缩进度记录`、`9e61fb59a docs: 合并进度记录`；`yekes-admin-javascript` `f010ea0 docs: 压缩进度记录`。
 - 验证：根工作区及四个子仓库 `git diff --check -- AGENTS.md progress.md` 通过；冲突标记扫描无残留。
-- 根仓库推送处理：直接推送本地旧 `master` 被 GitHub Push Protection 拦截，原因是旧提交 `6f28e27e` 中历史 dashboard 文件含明文 GitHub token；已在临时干净快照中移除当前 `deploy-dashboard.html` 明文 token，并以无旧历史的孤儿提交推送远端 `master`。
-- 剩余：当前本地根仓库仍保留既有旧历史和未提交的子仓库指针、`prototypes/`、`screenshots/` 等本地差异；未纳入本次远端干净快照。
+- 剩余：根工作区 `AGENTS.md` / `progress.md` 正在准备单独提交并推送，子仓库指针与 `prototypes/`、`screenshots/` 等既有本地差异不纳入本次提交。
 
 ## 2026-05-13 确认我的牌局记录修复提交
 - 任务目标：确认 yekes-web-javascript 中我的牌局记录统计展示修复是否已提交。
@@ -296,3 +301,11 @@
 - 修复方案：恢复 H5 房主大代理添加入口，并恢复 APP `/game/agent/set` 后端能力；新增/调整测试要求添加大代理必须通过 Google 2FA，防止敏感授权无校验。
 
 - 提交推送完成：yekes-web-javascript `5e88ee26 fix(promotion): 增加推广记录页复制链接` 已推送到 origin/main。提交范围仅包含 #1114 相关页面、测试和进度记录；其它既有未提交审核/上分相关改动未纳入。
+
+- 代码修改：前端恢复大代理添加按钮/成员选择/Google 2FA 后调用 setAgentAPI；后端恢复 APP 设置大代理接口并默认 1% 返佣比例，设置/撤销均保留审计和 Google 2FA。开始运行前后端定向测试。
+
+- 验证结果：前端 `pnpm vitest run src/views/new/__tests__/clubSensitiveTwoFaSource.test.ts` 通过；后端 `mvn -pl yudao-module-game/yudao-module-game-biz -Dtest=AppAgentControllerTest test` 被现有模块编译错误阻塞，错误集中在 AppPrivateRoomCreditController、UserHookRoomAction、TexasPokerPlayerRotationManager 等非本次改动文件。
+
+- 修正前端类型：成员接口结果显式按数组归一化，重新运行 `pnpm type-check` 和相关 Vitest。
+
+- 完成状态：前端恢复大代理添加按钮与弹窗，新增 setAgentAPI 并通过 Google 2FA 提交；后端恢复 `/game/agent/set`，设置大代理前校验 Google 2FA、写 AGENT_SET 审计并调用 AgentService.setAgent，缺省返佣比例 1%。验证：前端定向 Vitest、pnpm type-check、前后端 diff --check 通过；后端定向 Maven 测试仍被既有模块编译错误阻塞。
