@@ -23,6 +23,11 @@
 
 ## 最近完成
 
+### 2026-05-13 - 记录自动提交推送规则
+- 状态：已完成。
+- 结果：已在 `CLAUDE.md` 新增“提交与推送规则”，明确以后代码改完后默认验证、提交并推送；同时要求只提交本次相关文件，并记录验证阻塞原因。
+- 影响范围：根工作区 `CLAUDE.md`、`progress.md`。
+
 ### 2026-05-13 - 额度调整 ownerId 修复推送
 - 状态：已完成并推送。
 - 结果：`yekes-web-javascript/main` 已 rebase 到最新 `origin/main` 并推送。
@@ -249,3 +254,35 @@
 - 任务目标：审核授权、玩家申请上分、玩家申请下分不再要求 Google 验证，减少频繁弹窗。
 - 影响范围：跨 `yekes-web-javascript` 前端弹窗/请求参数与 `yekes-java` 后端 private-room invite/credit 接口校验。
 - 当前状态：开始按 TDD 核对前后端现状，若仍有 Google 校验残留则直接修复并提交推送。
+- 红测：Home.texaspokerEntry 新期望失败，当前代码仍调用 insufficient_chips toast，未显示标准弹窗和去申请按钮。准备实现。
+- 继续处理：确认玩家提交上/下分申请和入会授权审批已有免 Google 覆盖；残留点集中在房主/管理员审核上分、下分申请，准备先更新测试契约再改实现。
+
+## 2026-05-13 - 分析 issue #1114
+- 任务目标：读取并分析 https://abcadwiki.org/issues/1114 对应问题，核对当前 AG 前后端实现边界。
+- 影响范围：待 issue 内容确认后定位；当前先读取 issue 原文并按前端/接口/后端链路排查。
+- 当前状态：开始读取 issue 与本地仓库状态。
+
+- Issue 内容：#1114 标题为“推广链接页面，没推广链接可以复制”，截图实际位于 H5 推廣記錄查詢/邀請列表页。
+- 前端定位：/promotion-data 只渲染 SalesmanDataView/HostDataView 和房主横幅，没有推广链接复制入口；/promote-link 页面已有链接展示/复制，并调用 /game/club-promote/my-info 获取 inviteCode。
+- 后端核对：AppClubInviteController#getMyPromoteInfo(ownerId) 已按房主 ownerCode 或业务员 play_club_invite.inviteCode 返回推广码，后端接口能力存在。
+- 绿测：Home.texaspokerEntry 9 tests 通过；本地余额不足与后端 CREDIT_INSUFFICIENT 已打开标准弹窗，去申请可打开上分申请并携带房主 ownerId。
+- 验证完成：Home.texaspokerEntry 9 tests、pnpm type-check、pnpm build-only、git diff --check 均通过。发现工作区有既有无关差异，提交时只纳入 #1116 相关 Home 页面、Home 测试和多语言文案。
+- 提交完成：yekes-web-javascript `e0ec7ea9 fix(home): 优化积分不足上分申请入口`。改动范围仅包含 Home 页面、Home 进入牌桌测试、多语言文案和进度记录；未提交既有无关本地差异。
+
+## 2026-05-13 - 推送 Redmine #1116 修复
+- 任务目标：按用户要求推送已提交的 #1116 积分不足上分申请入口修复。
+- 影响范围：yekes-web-javascript。
+- 当前状态：开始确认分支 ahead 提交并准备推送。
+
+## 2026-05-13 - 修复 issue #1114 推广记录页缺少复制链接
+- 任务目标：在 H5 推廣記錄查詢/邀請列表页提供可复制推广链接入口。
+- 影响范围：yekes-web-javascript；复用现有 /game/club-promote/my-info 和 useCopy 复制链路，暂不改后端。
+- 当前状态：准备先补回归测试，再修改 promotion-data 页面。
+- 推送完成：`yekes-web-javascript/main` 已推送到 `origin/main`，包含 `e0ec7ea9 fix(home): 优化积分不足上分申请入口`；推送后本地与远端提交对齐。
+
+## 2026-05-13 - 自己房间大代理添加按钮消失
+- 任务目标：分析并修复“我的房间”进入大代理页面后添加按钮不显示的问题。
+- 影响范围：yekes-web-javascript H5 前端，大代理/下线/推广数据入口与权限判断。
+- 当前状态：开始定位页面组件、按钮显示条件和自己的房间上下文传参。
+
+- 定位进展：大代理页面当前模板只有空态和列表，`add-btn` 样式与添加弹窗样式仍在 CSS 中，但 Vue 模板/脚本已没有打开添加弹窗或调用新增接口的逻辑；继续从历史提交和后端接口确认恢复方式。
