@@ -415,3 +415,7 @@
 - 验证：定向 Vitest `src/views/new/game-records/__tests__/gameRecordsFinancialDisplay.test.ts` 5 tests 通过；继续执行类型检查与 diff 检查。
 
 - 提交推送完成：yekes-web-javascript `32c0d234 fix(records): 私房记录显示流水抽水` 已推送到 origin/main；根仓库同步 H5 指针到该提交。
+
+## 2026-05-13 - 限制俱乐部牌局记录按钮角色
+- 提交推送完成：yekes-web-javascript `fe288b57 fix(club): 限制牌局记录入口角色` 已推送到 origin/main；根仓库同步 H5 指针到该提交。
+- 验证：`pnpm vitest run src/views/new/home/components/__tests__/compactActions.test.ts` 10 tests 通过；`pnpm type-check` 和 `git diff --check` 通过。
