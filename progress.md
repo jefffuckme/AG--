@@ -419,3 +419,10 @@
 ## 2026-05-13 - 限制俱乐部牌局记录按钮角色
 - 提交推送完成：yekes-web-javascript `fe288b57 fix(club): 限制牌局记录入口角色` 已推送到 origin/main；根仓库同步 H5 指针到该提交。
 - 验证：`pnpm vitest run src/views/new/home/components/__tests__/compactActions.test.ts` 10 tests 通过；`pnpm type-check` 和 `git diff --check` 通过。
+
+## 2026-05-13 - 取消申请免 Google 验证
+- 任务目标：审批中心里申请人点击“取消申请”不再弹 Google 验证，也不向后端传 `googleCode`。
+- 影响范围：yekes-web-javascript 审批工作台取消申请、私人房 API 契约测试；yekes-java 取消申请接口 VO/controller/test。
+- 当前状态：已移除前端取消申请 2FA 弹窗和 payload `googleCode`，后端 `CancelApplicationReqVO` 与 `AppPrivateRoomAuthController#cancelApplication` 也不再校验 Google。
+- 验证：前端 `rtk proxy pnpm vitest run src/api/__tests__/privateRoomTwoFa.apiSource.test.ts src/views/new/__tests__/clubSensitiveTwoFaSource.test.ts` 20 tests 通过，`rtk proxy pnpm type-check` 通过，`rtk proxy pnpm build-only` 通过；后端 `rtk proxy mvn -pl yudao-module-game/yudao-module-game-biz -Dtest=AppPrivateRoomAuthControllerTest test` 被既有 game-biz 编译错误阻塞，首个错误为缺少 `MessageType.PRIVATE_ROOM_CREDIT_REQUEST_REVIEWED` / `PRIVATE_ROOM_MEMBERSHIP_CHANGED`。
+- 当前状态：已完成前端、后端子仓库提交推送；根仓库同步子仓库指针。
