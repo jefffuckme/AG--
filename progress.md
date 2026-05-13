@@ -426,3 +426,10 @@
 - 当前状态：已移除前端取消申请 2FA 弹窗和 payload `googleCode`，后端 `CancelApplicationReqVO` 与 `AppPrivateRoomAuthController#cancelApplication` 也不再校验 Google。
 - 验证：前端 `rtk proxy pnpm vitest run src/api/__tests__/privateRoomTwoFa.apiSource.test.ts src/views/new/__tests__/clubSensitiveTwoFaSource.test.ts` 20 tests 通过，`rtk proxy pnpm type-check` 通过，`rtk proxy pnpm build-only` 通过；后端 `rtk proxy mvn -pl yudao-module-game/yudao-module-game-biz -Dtest=AppPrivateRoomAuthControllerTest test` 被既有 game-biz 编译错误阻塞，首个错误为缺少 `MessageType.PRIVATE_ROOM_CREDIT_REQUEST_REVIEWED` / `PRIVATE_ROOM_MEMBERSHIP_CHANGED`。
 - 当前状态：已完成前端、后端子仓库提交推送；根仓库同步子仓库指针。
+
+## 2026-05-14 - 提交并同步牌桌相关子仓库指针
+- 任务目标：按用户要求提交代码推送，收口已完成并推送的游戏端、H5、后端子仓库提交，并同步根仓库 submodule 指针。
+- 影响范围：`new-yekes-game-javascript`、`yekes-web-javascript`、`yekes-java` 子仓库指针与根 `progress.md`。
+- 已推送子仓库提交：new-yekes-game-javascript `35cc293f fix(game): I-8 重连前清理旧心跳timer; I-9 错误路径统一走序列门控reveal`；yekes-java `7602ffa9 fix(texas): 调整输光重入等待局数`；yekes-web-javascript `cf6b4d9a`，包含 `506deba0 refactor(game): 重命名共享牌桌宿主目录` 与 `e157ebcd fix(mtt): I-7 registered状态等待室不可入时兜底路由到详情页`。
+- 验证：H5 共享牌桌宿主相关 Vitest 11 files / 50 tests 通过；`rtk proxy pnpm type-check` 通过；`rtk proxy pnpm build-only` 通过；`git diff --check` 通过；三个子仓库 HEAD 均已与各自 `origin/main` 一致。
+- 当前状态：准备提交并推送根仓库同步提交；根目录 `prototypes/`、`screenshots/` 不纳入本次提交。
