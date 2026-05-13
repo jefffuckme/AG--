@@ -23,6 +23,18 @@
 
 ## 最近完成
 
+### 2026-05-13 - 私人房间牌局记录显示总流水总抽水
+- 状态：处理中。
+- 目标：私人房间入口的游戏/牌局记录列表显示总流水和总抽水；个人中心牌局记录继续显示总下注和盈亏。
+- 影响范围：优先核对 `yekes-web-javascript` 牌局记录页面/接口字段，必要时检查 `yekes-java` 是否已返回总流水、总抽水。
+- 当前状态：开始定位前端页面、上下文来源、记录卡片组件和后端响应字段。
+
+### 2026-05-13 - 分析 AMY2085 管理员牌局记录异常
+- 状态：处理中。
+- 目标：分析管理员查看 AMY2085 房间牌局记录时，出现不存在牌局展示、抽水数值异常的问题。
+- 影响范围：需要跨 `yekes-web-javascript` 牌局记录页面/API 与 `yekes-java` 牌局记录/抽水字段计算核对，必要时检查游戏端记录来源。
+- 当前状态：先定位牌局记录页面、接口、后端查询和抽水计算链路；本轮只分析不改代码。
+
 ### 2026-05-13 - 取消充提申请 Google 验证残留
 - 状态：已完成。
 - 目标：根据截图修复玩家提交上分/下分申请仍提示“Google 验证码不能为空”的问题，同时确认审核授权、玩家申请上分、玩家申请下分均不再要求 Google 验证。
@@ -273,6 +285,20 @@
 - 红测与实现：前端审核中心/工作台/全局审核弹窗已改为审核上/下分不弹 Google、不传 `googleCode`；后端 approve 上/下分接口已移除 Google 校验入参与调用。下一步执行前端定向测试、类型检查与后端定向 Maven 验证。
 - 验证：前端定向 Vitest 28 tests、`pnpm type-check`、`pnpm build-only`、前后端 `git diff --check` 均通过；后端定向 Maven 测试仍被既有 main compile 错误阻塞，未进入本次测试执行。
 
+## 2026-05-13 - 重新打开房间免 Google 验证
+- 任务目标：重新打开已关闭房间时不再要求 Google 验证。
+- 影响范围：`yekes-web-javascript` 重开房间入口/API 请求参数与 `yekes-java` 私房 reopen 后端校验。
+- 当前状态：开始按 TDD 定位前后端重开链路和现有测试，准备移除前端弹窗/传参与后端校验。
+- 定位结果：前端 `selectReopenDuration` 当前会弹 Google 并把 `googleCode` 传给 reopen API；后端 `AppPrivateRoomController#reopenPrivateRoom` 也会校验 `ReopenRoomReqVO.googleCode`。
+- 测试先行：已更新前端 API/交互测试和后端 controller 测试，要求重开房间不触发 Google 2FA，关闭/删除仍保持校验。
+- 红测结果：前端定向 Vitest 按预期失败，失败点为 reopen API 仍要求 `googleCode`、重开流程仍调用 Google 弹窗；后端定向 Maven 测试被既有编译错误阻塞，未进入本次 controller 测试。
+- 代码修改：前端重开流程已移除 Google 弹窗与传参；后端 reopen controller 已移除 Google 校验，`ReopenRoomReqVO` 删除 `googleCode` 字段。
+- 验证进展：前端定向 Vitest 业务断言通过，但测试 mock 未返回 Promise 造成 unhandled rejection；已修正测试夹具准备重跑。
+- 验证完成：前端 `pnpm vitest run src/api/__tests__/privateRoomTwoFa.apiSource.test.ts src/views/new/home/composables/__tests__/useRoomActions.test.ts`、`pnpm type-check`、`pnpm build-only`、前后端 `git diff --check` 均通过。
+- 后端验证边界：`mvn -pl yudao-module-game/yudao-module-game-biz -Dtest=AppPrivateRoomControllerTest test` 仍被既有编译错误阻塞，首个错误为 `AppPrivateRoomCreditController` 引用缺失的 `MessageType.PRIVATE_ROOM_CREDIT_REQUEST_REVIEWED` / `PRIVATE_ROOM_MEMBERSHIP_CHANGED`，后续还有 `UserHookRoomAction`、`TexasPokerPlayerRotationManager` 等非本次改动编译错误。
+- 当前状态：准备按 scoped 文件提交并推送前后端改动；后端已有无关未提交文件 `AppPrivateRoomCreditController.java`，提交时排除。
+- 提交推送完成：yekes-web-javascript `87d2038a fix(room): 重开房间免谷歌验证` 已推送到 origin/main；yekes-java `cbc8686ce fix(room): 重开房间免谷歌验证` 已推送到 origin/main。
+
 ## 2026-05-13 - 分析 issue #1114
 - 任务目标：读取并分析 https://abcadwiki.org/issues/1114 对应问题，核对当前 AG 前后端实现边界。
 - 影响范围：待 issue 内容确认后定位；当前先读取 issue 原文并按前端/接口/后端链路排查。
@@ -320,3 +346,70 @@
 - 完成状态：前端恢复大代理添加按钮与弹窗，新增 setAgentAPI 并通过 Google 2FA 提交；后端恢复 `/game/agent/set`，设置大代理前校验 Google 2FA、写 AGENT_SET 审计并调用 AgentService.setAgent，缺省返佣比例 1%。验证：前端定向 Vitest、pnpm type-check、前后端 diff --check 通过；后端定向 Maven 测试仍被既有模块编译错误阻塞。
 
 - 推送完成：yekes-web-javascript `adb11928 feat(club): 支持房主设置大代理` 已在 `origin/main`；yekes-java `0fc449e78 docs(club): 记录俱乐部验证规则复验结果` 已推送到 `origin/main`，包含前置 `ba6ed56ed fix(club): 放开上下分审批谷歌验证` 与 `c613377f3 feat(club): 支持房主设置大代理`。根仓库准备只提交 `progress.md` 和两个子仓库指针，继续排除 `prototypes/`、`screenshots/`、`yekes-admin-javascript` 临时差异。
+
+## 2026-05-13 - 分析房主牌桌内上分申请自动买入
+- 任务目标：分析房主在德州牌桌内点击“上分申请”后的当前流程，以及为什么出现“已自动买入筹码”提示。
+- 影响范围：AG H5 外层、new-yekes-game-javascript 游戏端、yekes-java 后端信用/筹码接口。
+- 当前状态：开始从游戏菜单点击事件、postMessage/接口调用、后端 buy-in/credit 流程排查。
+
+### 2026-05-13 22:54:38
+- 任务: 分析房主在德州牌桌内点击上分申请后自动买入筹码的当前流程与原因。
+- 影响仓库: new-yekes-game-javascript, yekes-web-javascript（只读分析）。
+- 状态: 继续追踪 requestManualBuyChip 与自动买入提示来源。
+
+### 2026-05-13 22:56:42
+- 发现: 信用/CHIP 私人房设置菜单文案始终按币种显示“上分申请”，但 `resolveSettingsRechargeAction` 在 `userId == ownerId` 时返回 `direct-buy-chip`。
+- 发现: 房主点击后调用 `requestManualBuyChip(autoBuyAmount)`，`autoBuyAmount` 来自房间 `minBet`，因此若 minBet=1000 就会发起 1000 筹码买入。
+- 下一步: 汇总普通玩家与房主两条流程，并标注前后端证据。
+
+### 2026-05-13 22:57:52
+- 发现: 后端购筹成功后 `broadcastChipExchange` 发送 `TEXAS_POKER_EXCHANGE`，`amount` 取当前牌桌筹码余额；游戏端 `exchange.ts` 收到后构造“已自动买入 {amount} 筹码”消息并更新本地余额。
+- 状态: 根因链路已确认，准备输出分析结论。
+
+### 2026-05-13 22:58:30
+- 补充: H5 宿主 `TopupRequestDialog` 普通会员提交时调用 `/app-api/game/private-room/member/topup-request`；房主路径不会进入该弹窗。
+- 状态: 分析完成，等待用户确认是否需要调整行为。
+
+### 2026-05-13 23:03:21
+- 任务: 按产品规则修复房主点击德州牌桌“上分申请”不应直接购筹，应增加 CREDIT 授权额度且免审核。
+- 影响仓库: new-yekes-game-javascript, yekes-web-javascript, yekes-java（先确认接口支持情况）。
+- 状态: 开始追踪上分申请后端逻辑与前端分支。
+
+## 2026-05-13 - 信用分不足标准弹窗与申请入口
+- 任务目标：将进入房间信用分不足提示改为标准对话框，并提供“去申请”按钮打开向房主/管理员申请上分数量的流程。
+- 影响范围：yekes-web-javascript H5 首页牌桌进入流程、上分申请弹窗 ownerId 透传与相关测试/文案。
+- 当前状态：开始核对现有实现与最新提交，避免重复改动或纳入无关 dirty 文件。
+
+## 2026-05-13 - 调整信用分不足标准弹窗
+- 任务目标：按用户要求实际修改信用分不足提示，统一为标准余额不足对话框，并保留“去申请”进入上分申请流程。
+- 影响范围：yekes-web-javascript H5 首页牌桌进入流程、标准弹窗文案/样式和测试。
+- 当前状态：开始检查现有弹窗实现与待提交差异，准备做最小修改。
+- 实现：信用分不足弹窗改为标准“餘額不足”居中卡片，新增统一说明文案和“去申請”按钮；按钮继续打开上分申请弹窗并透传房主 ownerId；同步补齐 6 个语言包和回归测试。
+- 验证：`rtk pnpm test:unit run src/views/new/home/__tests__/Home.texaspokerEntry.test.ts` 9 tests 通过；`rtk pnpm type-check` 通过；`rtk pnpm build-only` 通过；`git diff --check` 通过。
+- 当前状态：准备在 `yekes-web-javascript` 提交并推送本次修改。
+
+### 2026-05-13 23:14:26
+- 变更: 游戏端 CREDIT/CHIP 设置入口不再按房主走 direct-buy-chip，统一通知宿主打开上分申请。
+- 变更: 后端 H5 上分接口 ownerId==当前用户时直接增加房主自己的 CREDIT 授权额度，不创建待审申请、不通知房主审核。旧 `/game/credit/applyTopUp` 入口也补齐房主免审直加逻辑。
+- 验证: 游戏端策略测试通过；后端目标 Maven 测试被现有无关编译错误阻断。
+
+## 2026-05-13 - 分析 AMY2085 管理员牌局记录异常
+- 任务目标：分析 AMY2085 管理员查看房间牌局记录时出现不存在牌局、流水/抽水显示错误的问题。
+- 影响范围：yekes-web-javascript 牌局记录页面、yekes-java 私人房牌局记录接口。
+- 当前状态：已确认 `/records` 外壳复用新牌局列表；列表接口从 `uc_member_betting` 聚合分页，未约束 `play_game_round.status=1`/有效牌局存在；前端列表使用 `betAmount`/`netProfit` 展示，未使用接口已返回的 `totalFlow`/`totalRake`。
+- 下一步：向用户汇总根因和修复建议，等待是否进入修改。
+
+### 2026-05-13 23:19:10
+- 任务: 提交并推送房主上分申请修复。
+- 范围: new-yekes-game-javascript 与 yekes-java 中本次相关文件，排除无关 dirty 文件。
+- 状态: 检查 git 状态与分支。
+- 提交推送完成: new-yekes-game-javascript `04bd8268 fix(game): 房主上分入口打开申请`、yekes-java `efdee6382 fix(credit): 房主上分免审核直加额度`、yekes-web-javascript `9c06ccb6 fix(home): 优化信用分不足提示` 均已推送到 origin/main。
+- 验证: 游戏端 `node scripts/run-tsx-test.mjs src/ui/__tests__/settingsRechargePolicy.test.ts` 通过 5 tests；H5 `pnpm vitest run src/views/new/home/__tests__/Home.texaspokerEntry.test.ts`、`pnpm type-check`、`pnpm build-only` 通过；三个仓库 `git diff --check` 通过。后端目标 Maven 测试仍被既有编译错误阻塞，首个错误为缺失 `MessageType.PRIVATE_ROOM_CREDIT_REQUEST_REVIEWED` / `PRIVATE_ROOM_MEMBERSHIP_CHANGED`。
+
+## 2026-05-13 - 私人房间牌局记录显示总流水总抽水
+- 任务目标：私人房间进入的牌局记录列表展示总流水/总抽水；个人中心牌局记录继续展示总下注/盈亏。
+- 影响范围：yekes-web-javascript 牌局记录列表；yekes-java 牌局记录接口契约只读核对。
+- 当前状态：已确认前端列表固定展示总下注/盈亏，接口与前端模型已具备 betAmount、netProfit、totalFlow、totalRake 字段；开始按 TDD 补私人房间 ownerId 场景测试。
+- TDD 红灯：`pnpm vitest run src/views/new/game-records/__tests__/gameRecordsFinancialDisplay.test.ts` 失败于新增私人房间列表用例，当前仍显示 `400/+170` 而非 `2,700/107.992`。
+- 变更：牌局记录列表在路由带 ownerId 的私人房间上下文下展示总流水/总抽水；无 ownerId 的个人中心入口保持总下注/盈亏。
+- 验证：定向 Vitest `src/views/new/game-records/__tests__/gameRecordsFinancialDisplay.test.ts` 5 tests 通过；继续执行类型检查与 diff 检查。
