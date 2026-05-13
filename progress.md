@@ -413,3 +413,5 @@
 - TDD 红灯：`pnpm vitest run src/views/new/game-records/__tests__/gameRecordsFinancialDisplay.test.ts` 失败于新增私人房间列表用例，当前仍显示 `400/+170` 而非 `2,700/107.992`。
 - 变更：牌局记录列表在路由带 ownerId 的私人房间上下文下展示总流水/总抽水；无 ownerId 的个人中心入口保持总下注/盈亏。
 - 验证：定向 Vitest `src/views/new/game-records/__tests__/gameRecordsFinancialDisplay.test.ts` 5 tests 通过；继续执行类型检查与 diff 检查。
+
+- 提交推送完成：yekes-web-javascript `32c0d234 fix(records): 私房记录显示流水抽水` 已推送到 origin/main；根仓库同步 H5 指针到该提交。
