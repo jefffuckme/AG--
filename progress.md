@@ -23,6 +23,15 @@
 
 ## 最近完成
 
+### 2026-05-13 - 取消充提申请 Google 验证残留
+- 状态：已完成。
+- 目标：根据截图修复玩家提交上分/下分申请仍提示“Google 验证码不能为空”的问题，同时确认审核授权、玩家申请上分、玩家申请下分均不再要求 Google 验证。
+- 影响范围：`yekes-java` 后端玩家充提申请 VO 与控制器测试；`yekes-web-javascript` 只做接口契约复验和进度记录。
+- 根因：前端玩家申请接口已经不传 `googleCode`，但后端 `MemberTopupRequestReqVO`、`MemberWithdrawRequestReqVO` 仍有 `googleCode` 和 `@NotBlank`，请求被 Bean Validation 拦截。
+- 实现：删除后端两个玩家申请 VO 的 `googleCode` 字段与必填校验；补后端契约测试断言 VO 不暴露 `googleCode`，并保留提交申请不消费 Google 验证码的断言。
+- 验证：前端 `pnpm vitest run src/api/__tests__/privateRoom.creditRequestApi.test.ts` 通过，5 tests；前后端 `git diff --check` 通过。后端 `mvn -pl yudao-module-game/yudao-module-game-biz -Dtest=AppPrivateRoomCreditControllerTest test` 仍被既有 main compile 错误阻塞，未进入测试执行。
+- 推送完成：yekes-java `dd8403150 fix(club): 取消玩家充提申请谷歌校验` 已推送到 `origin/main`；yekes-web-javascript `5138c000 docs(club): 记录充提申请验证排查` 已推送到 `origin/main`。
+
 ### 2026-05-13 - 提交代码推送
 - 状态：处理中。
 - 目标：按用户要求提交并推送当前已完成代码改动。
